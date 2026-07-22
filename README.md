@@ -4,7 +4,7 @@ A clean, modern, and responsive personal portfolio website showcasing my enginee
 
 ## 🚀 Tech Stack
 
-- **Framework:** [Next.js 15 (App Router)](https://nextjs.org/)
+- **Framework:** [Next.js 16 (App Router)](https://nextjs.org/)
 - **Library:** [React 19](https://react.dev/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Animations:** [Framer Motion](https://www.framer.com/motion/)
@@ -34,13 +34,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the portfolio.
 
-## 🔑 Environment Variables
-
-To make the contact form work locally, create a `.env.local` file in the root directory and add your Web3Forms Access Key:
-
-```env
-WEB3FORMS_ACCESS_KEY=your_access_key_here
-```
-
 ---
-*Designed and maintained by Farhan Sadik*
+
+_Designed and maintained by Farhan Sadik_
