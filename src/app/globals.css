@@ -1,26 +1,60 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-bluegrey-50: #eceff1;
+  --color-bluegrey-100: #cfd8dc;
+  --color-bluegrey-200: #b0bec5;
+  --color-bluegrey-300: #90a4ae;
+  --color-bluegrey-400: #78909c;
+  --color-bluegrey-500: #607d8b;
+  --color-bluegrey-600: #546e7a;
+  --color-bluegrey-700: #455a64;
+  --color-bluegrey-800: #37474f;
+  --color-bluegrey-900: #263238;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-hover: var(--hover);
+
+  --font-sans: var(--font-geist-sans), var(--font-inter), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Theme */
+  --background: #FFFFFF;
+  --surface: #eceff1;
+  --card: #FFFFFF;
+  --primary: #607d8b;
+  --secondary: #455a64;
+  --text-primary: #263238;
+  --text-muted: #546e7a; /* Adding a sensible muted text for light mode */
+  --border: #cfd8dc;
+  --hover: #b0bec5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  /* Dark Theme */
+  --background: #121212;
+  --surface: #263238;
+  --card: #37474f;
+  --primary: #78909c;
+  --secondary: #607d8b;
+  --text-primary: #FFFFFF;
+  --text-muted: #cfd8dc;
+  --border: #455a64;
+  --hover: #546e7a;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
