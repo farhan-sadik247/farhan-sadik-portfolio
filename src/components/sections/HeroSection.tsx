@@ -10,7 +10,7 @@ import { fadeInUp, staggerContainer } from '@/utils/animations';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex flex-col pt-28 pb-12 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
@@ -18,7 +18,7 @@ export function HeroSection() {
         <div className="absolute right-[-10%] bottom-[-10%] w-[40%] h-[40%] rounded-full bg-secondary/20 blur-[100px] opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
-      <Container className="relative z-10">
+      <Container className="relative z-10 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Left Content */}

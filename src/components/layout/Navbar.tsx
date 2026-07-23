@@ -45,7 +45,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
@@ -57,7 +57,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <ThemeToggle />
           <Button 
             variant="contained" 
@@ -71,7 +71,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <ThemeToggle />
           <button 
             className="p-2 rounded-md hover:bg-hover transition-colors"
@@ -91,7 +91,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden absolute top-full left-0 w-full bg-surface border-b border-border overflow-hidden"
+            className="lg:hidden absolute top-full left-0 w-full bg-surface border-b border-border overflow-hidden"
           >
             <nav className="flex flex-col p-6 gap-6 items-center">
               {navLinks.map((link) => (
