@@ -11,10 +11,12 @@ import { ThemeToggle } from '../common/ThemeToggle';
 import { Container } from '../common/Container';
 import { navLinks } from '@/data/navigation';
 import { cn } from '@/utils/cn';
+import { usePathname } from 'next/navigation';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,8 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const isAuthOrShortenerPage = pathname.startsWith('/login') || pathname.startsWith('/signup') || pathname.startsWith('/shortener');
 
   return (
     <header
@@ -45,47 +49,54 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href}
-              className="text-sm font-medium text-text-primary/80 hover:text-primary transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+        {!isAuthOrShortenerPage && (
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href}
+                className="text-sm font-medium text-text-primary/80 hover:text-primary transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+        )}
 
         <div className="hidden lg:flex items-center gap-4">
           <ThemeToggle />
-          <Button 
-            variant="contained" 
-            color="primary"
-            href="#contact"
-            disableElevation
-            className="font-semibold"
-          >
-            Let&apos;s Talk
-          </Button>
+          
+          {!isAuthOrShortenerPage && (
+            <Button 
+              variant="contained" 
+              color="primary"
+              href="/#contact"
+              disableElevation
+              className="font-semibold"
+            >
+              Let&apos;s Talk
+            </Button>
+          )}
         </div>
 
         {/* Mobile Menu Toggle */}
         <div className="flex lg:hidden items-center gap-2">
           <ThemeToggle />
-          <button 
-            className="p-2 rounded-md hover:bg-hover transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {!isAuthOrShortenerPage && (
+            <button 
+              className="p-2 rounded-md hover:bg-hover transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          )}
         </div>
       </Container>
 
       {/* Mobile Drawer */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {mobileMenuOpen && !isAuthOrShortenerPage && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}

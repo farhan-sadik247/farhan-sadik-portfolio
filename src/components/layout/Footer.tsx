@@ -20,7 +20,7 @@ export function Footer() {
   return (
     <footer className="bg-surface border-t border-border/50 py-12 md:py-16">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
@@ -50,6 +50,21 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Features */}
+          <div className="col-span-1">
+            <h3 className="font-semibold text-lg mb-4">Features</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/shortener"
+                  className="text-text-muted hover:text-primary transition-colors text-sm"
+                >
+                  shortenURL
+                </Link>
+              </li>
             </ul>
           </div>
 
