@@ -6,6 +6,7 @@ import { Container } from '../common/Container';
 import { Button, IconButton } from '@mui/material';
 import { Download, ArrowRight, Mail } from 'lucide-react';
 import { GitHub, LinkedIn } from '@mui/icons-material';
+import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
 
 export function HeroSection() {
@@ -13,7 +14,7 @@ export function HeroSection() {
     <section id="home" className="relative min-h-screen flex flex-col pt-28 pb-12 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]" />
         <div className="absolute left-[-10%] top-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[100px] opacity-50 animate-pulse" />
         <div className="absolute right-[-10%] bottom-[-10%] w-[40%] h-[40%] rounded-full bg-secondary/20 blur-[100px] opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
@@ -91,19 +92,25 @@ export function HeroSection() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="flex justify-center relative mt-8 lg:mt-0"
           >
-            <div className="relative w-full max-w-[300px] sm:max-w-[350px] lg:w-[400px] h-[350px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-border/50 bg-surface shadow-2xl p-4">
+            <div className="relative w-full max-w-75 sm:max-w-87.5 lg:w-100 h-87.5 sm:h-100 lg:h-125 rounded-2xl overflow-hidden border border-border/50 bg-surface shadow-2xl p-4">
               <div className="w-full h-full rounded-xl bg-card flex items-center justify-center border border-border/30 overflow-hidden relative">
                 {/* Light Theme Image */}
-                <img 
+                <Image 
                   src="https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715354/farhan_profie_light_wgz6sd.png" 
                   alt="Farhan Sadik Profile" 
-                  className="w-full h-full object-cover block dark:hidden"
+                  fill
+                  priority
+                  className="object-cover block dark:hidden"
+                  sizes="(max-width: 768px) 100vw, 400px"
                 />
                 {/* Dark Theme Image */}
-                <img 
+                <Image 
                   src="https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715017/fathan_profile_inauvp.png" 
                   alt="Farhan Sadik Profile Dark" 
-                  className="w-full h-full object-cover hidden dark:block"
+                  fill
+                  priority
+                  className="object-cover hidden dark:block"
+                  sizes="(max-width: 768px) 100vw, 400px"
                 />
               </div>
             </div>

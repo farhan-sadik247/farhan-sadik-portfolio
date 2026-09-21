@@ -6,7 +6,7 @@ import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
-import { Award, Shield, FileText, BookOpen, ExternalLink } from 'lucide-react';
+import { Shield, BookOpen, ExternalLink } from 'lucide-react';
 
 const achievements = [
   {
@@ -57,7 +57,7 @@ export function AchievementsSection() {
               variants={fadeInUp}
               className="p-6 bg-card rounded-2xl border border-border shadow-sm flex gap-6 hover:shadow-md transition-shadow group"
             >
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                   {item.icon}
                 </div>

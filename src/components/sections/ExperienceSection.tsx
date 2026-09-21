@@ -17,9 +17,10 @@ const experiences = [
     responsibilities: [
       "Developed and maintained healthcare web applications using Angular, Python, Firebase Cloud Functions, and REST APIs while contributing across both frontend and backend modules.",
       "Worked closely with senior engineers during Agile development, participating in code reviews, debugging, documentation, technical discussions, and feature planning while continuously improving code quality and maintainability.",
+      "Architected and deployed end-to-end Google Analytics 4 (GA4) integration across the primary web platform, accompanied by comprehensive technical documentation to standardize user behavior tracking and data analysis.",
       "Used AI-assisted development tools to accelerate implementation while validating generated code through testing, debugging, and manual review to ensure correctness and security."
     ],
-    technologies: ["Angular", "Python", "Firebase", "REST APIs", "AWS", "Agile", "Jira", "DynamoDB"],
+    technologies: ["Angular", "Python", "Firebase", "REST APIs", "AWS", "Google Analytics 4", "Agile", "Jira", "DynamoDB"],
     achievements: "Improved code quality and maintainability through rigorous code reviews and AI-assisted tooling."
   },
   {
@@ -59,7 +60,7 @@ export function ExperienceSection() {
                 className="relative md:pl-24"
               >
                 {/* Timeline Dot */}
-                <div className="hidden md:flex absolute left-[26px] top-1 w-5 h-5 rounded-full bg-primary ring-4 ring-surface items-center justify-center z-10" />
+                <div className="hidden md:flex absolute left-6.5 top-1 w-5 h-5 rounded-full bg-primary ring-4 ring-surface items-center justify-center z-10" />
 
                 <div className="p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">

@@ -100,7 +100,7 @@ export function ContactSection() {
                 </div>
                 <h3 className="text-2xl font-bold text-text-primary mb-2">Message Sent!</h3>
                 <p className="text-text-muted">
-                  Thank you for reaching out. I'll get back to you as soon as possible.
+                  Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                 </p>
                 <button
                   type="button"
@@ -164,7 +164,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 text-base font-semibold text-white bg-[#607d8b] hover:bg-[#546e7a] active:bg-[#455a64] rounded-xl transition-colors disabled:opacity-70 disabled:cursor-not-allowed shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 text-base font-semibold text-white bg-bluegrey-500 hover:bg-bluegrey-600 active:bg-bluegrey-700 rounded-xl transition-colors disabled:opacity-70 disabled:cursor-not-allowed shadow-sm"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                   {!isSubmitting && <Send size={18} />}
