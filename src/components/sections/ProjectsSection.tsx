@@ -26,6 +26,16 @@ const projectsData = [
     live: "https://gjadt.vercel.app/"
   },
   {
+    id: 15,
+    title: "codeWithFarhan",
+    category: "Full Stack",
+    description: "A full-stack Python Learning Platform designed for structured course delivery, coding practice, and progress tracking. It features role-based Admin, Teacher, and Student dashboards, course and lesson management, coding homeworks with Monaco Editor, Python code execution, automated test-case grading, submissions, and student progress tracking.",
+    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1790000737/python-learning-website_gfjg6d.png",
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Prisma", "PostgreSQL", "Supabase", "Python", "Monaco Editor", "Node.js", "Vercel"],
+    github: "",
+    live: ""
+  },
+  {
     id: 2,
     title: "Tailor Maven",
     category: "Full Stack",

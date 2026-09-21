@@ -14,7 +14,7 @@ export default function ProjectsPage() {
       <Container className="pt-8">
         <Link 
           href="/#projects" 
-          className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors group mb-[-2rem] relative z-10"
+          className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors group -mb-8 relative z-10"
         >
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
           <span className="font-medium">Back to Home</span>
