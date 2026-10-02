@@ -16,24 +16,34 @@ const categories = ["All", "Featured", "Frontend", "Full Stack", "Healthcare", "
 
 const projectsData = [
   {
-    id: 1,
-    title: "Academic Journal Publish Website",
-    category: "Full Stack",
-    description: "Built a full-stack academic journal platform supporting end-to-end workflow: submission → peer review → editorial decision → copyediting → publication. Integrated Google OAuth with role-based access and promotion system. Enabled real-time manuscript tracking, email notifications, and manual payment processing via bank transfer.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708783/journal_laauze.png",
-    techStack: ["Next.js", "MongoDB", "TypeScript", "NextAuth.js", "SCSS"],
-    github: "https://github.com/farhan-sadik247/journalWebsite.git",
-    live: "https://gjadt.vercel.app/"
-  },
-  {
     id: 15,
     title: "codeWithFarhan",
-    category: "Full Stack",
+    category: ["Full Stack", "Featured"],
     description: "A full-stack Python Learning Platform designed for structured course delivery, coding practice, and progress tracking. It features role-based Admin, Teacher, and Student dashboards, course and lesson management, coding homeworks with Monaco Editor, Python code execution, automated test-case grading, submissions, and student progress tracking.",
     image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1790000737/python-learning-website_gfjg6d.png",
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Prisma", "PostgreSQL", "Supabase", "Python", "Monaco Editor", "Node.js", "Vercel"],
     github: "https://github.com/farhan-sadik247/python-learning-platform",
     live: "https://codewithfarhan.vercel.app/"
+  },
+  {
+    id: 1,
+    title: "Academic Journal Publish Website",
+    category: ["Full Stack", "Featured"],
+    description: "Built a full-stack academic journal platform supporting end-to-end workflow: submission → peer review → editorial decision → copyediting → publication. Integrated Google OAuth with role-based access and promotion system. Enabled real-time manuscript tracking, email notifications, and manual payment processing via bank transfer.",
+    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1790943687/journal_website_wg44zr.png",
+    techStack: ["Next.js", "MongoDB", "TypeScript", "NextAuth.js", "SCSS"],
+    github: "https://github.com/farhan-sadik247/journalWebsite.git",
+    live: "https://gjadt.vercel.app/"
+  },
+  {
+    id: 5,
+    title: "Shoe Bay - AI Shoe Assistant",
+    category: ["Full Stack", "Featured"],
+    description: "A conversational e-commerce web app for discovering and buying shoes that combines classic product browsing with an AI shopping assistant. Features include AI-powered search and recommendations, comprehensive shoe catalog, and cart functionality.",
+    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1790943687/shoe-bay_bgvmyg.png",
+    techStack: ["Next.js", "React", "TypeScript", "MongoDB", "NextAuth", "Gemini AI", "SCSS"],
+    github: "https://github.com/farhan-sadik247/ai-ecommerce-chatbot",
+    live: "https://shoe-bay247.vercel.app/"
   },
   {
     id: 2,
@@ -64,16 +74,6 @@ const projectsData = [
     techStack: ["Solidity", "React.js", "Web3.js", "Truffle", "Docker"],
     github: "https://github.com/farhan-sadik247/missing-person.git",
     live: ""
-  },
-  {
-    id: 5,
-    title: "Shoe Bay - AI Shoe Assistant",
-    category: "Full Stack",
-    description: "A conversational e-commerce web app for discovering and buying shoes that combines classic product browsing with an AI shopping assistant. Features include AI-powered search and recommendations, comprehensive shoe catalog, and cart functionality.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708783/shoebay_apvjau.png",
-    techStack: ["Next.js", "React", "TypeScript", "MongoDB", "NextAuth", "Groq AI", "SCSS"],
-    github: "https://github.com/farhan-sadik247/ai-ecommerce-chatbot",
-    live: "https://shoe-bay247.vercel.app/"
   },
   {
     id: 6,
@@ -108,7 +108,7 @@ const projectsData = [
   {
     id: 9,
     title: "Snake Game",
-    category: "Featured",
+    category: "Frontend",
     description: "A classic Snake game built with Python and Pygame featuring modern graphics and smooth gameplay mechanics. Includes beautiful brick-style borders, multiple game states, real-time scoring system, responsive controls with arrow keys.",
     image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708783/snakeGame_ixleu2.png",
     techStack: ["Python", "Pygame"],

@@ -10,7 +10,7 @@ import { IconButton } from '@mui/material';
 
 const socialLinks = [
   { name: 'GitHub', icon: <GitHub sx={{ fontSize: 20 }} />, href: 'https://github.com/farhan-sadik247' },
-  { name: 'LinkedIn', icon: <LinkedIn sx={{ fontSize: 20 }} />, href: 'https://linkedin.com/in/md-farhan-sadik-39826721b' },
+  { name: 'LinkedIn', icon: <LinkedIn sx={{ fontSize: 20 }} />, href: 'https://www.linkedin.com/in/farhan-sadik247/' },
   { name: 'Email', icon: <Mail size={20} />, href: 'mailto:md.farhan.sadik.578@gmail.com' },
 ];
 

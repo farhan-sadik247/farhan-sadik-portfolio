@@ -76,7 +76,7 @@ export function HeroSection() {
               <IconButton component="a" href="https://github.com/farhan-sadik247" target="_blank" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
                 <GitHub />
               </IconButton>
-              <IconButton component="a" href="https://linkedin.com/in/md-farhan-sadik-39826721b" target="_blank" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
+              <IconButton component="a" href="https://www.linkedin.com/in/farhan-sadik247/" target="_blank" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
                 <LinkedIn />
               </IconButton>
               <IconButton component="a" href="mailto:md.farhan.sadik.578@gmail.com" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
