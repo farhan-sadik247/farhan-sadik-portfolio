@@ -1,11 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import logo from '@/assets/images/logo.png';
 import { Container } from '../common/Container';
 import { navLinks } from '@/data/navigation';
 import { Mail } from 'lucide-react';
-import { GitHub, LinkedIn, Twitter } from '@mui/icons-material';
+import { GitHub, LinkedIn } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 
 const socialLinks = [
@@ -24,11 +22,11 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-slate-400 to-slate-800 shadow-lg transition-transform group-hover:scale-110">
+              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-linear-to-br from-slate-400 to-slate-800 shadow-lg transition-transform group-hover:scale-110">
                 <span className="font-bold text-2xl text-white tracking-tighter">F</span>
                 <span className="font-bold text-2xl text-slate-300 tracking-tighter">S</span>
               </div>
-              <div className="h-8 w-[2px] bg-slate-600/50 rounded-full mx-1"></div>
+              <div className="h-8 w-0.5 bg-slate-600/50 rounded-full mx-1"></div>
               <span className="font-bold text-2xl tracking-tight text-text-primary">Portfolio</span>
             </Link>
             <p className="text-text-muted max-w-sm">
