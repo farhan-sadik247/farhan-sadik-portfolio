@@ -6,6 +6,18 @@ import { logout } from '@/app/actions/auth'
 export const metadata = {
   title: 'URL Shortener | My Portfolio',
   description: 'Shorten your long URLs easily.',
+  alternates: {
+    canonical: '/shortener',
+  },
+  openGraph: {
+    title: 'URL Shortener | My Portfolio',
+    description: 'Shorten your long URLs easily.',
+    url: 'https://farhansadik.me/shortener',
+  },
+  twitter: {
+    title: 'URL Shortener | My Portfolio',
+    description: 'Shorten your long URLs easily.',
+  },
 }
 
 interface ShortLink {

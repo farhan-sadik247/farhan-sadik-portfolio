@@ -27,9 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Md. Farhan Sadik"
   },
   description: "Md. Farhan Sadik is a software developer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.",
-  alternates: {
-    canonical: "/",
-  },
+
   openGraph: {
     type: "website",
     url: "https://farhansadik.me/",

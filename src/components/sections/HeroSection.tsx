@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
 import { Button, IconButton } from '@mui/material';
 import { Download, ArrowRight, Mail } from 'lucide-react';
-import { GitHub, LinkedIn, Facebook, Instagram } from '@mui/icons-material';
+import { GitHub, LinkedIn } from '@mui/icons-material';
 import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
 

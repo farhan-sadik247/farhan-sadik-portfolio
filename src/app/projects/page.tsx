@@ -6,6 +6,18 @@ import { ArrowLeft } from "lucide-react";
 export const metadata = {
   title: "Projects",
   description: "Browse through all my web applications, backend systems, and software projects.",
+  alternates: {
+    canonical: "/projects",
+  },
+  openGraph: {
+    title: "Projects | Md. Farhan Sadik",
+    description: "Browse through all my web applications, backend systems, and software projects.",
+    url: "https://farhansadik.me/projects",
+  },
+  twitter: {
+    title: "Projects | Md. Farhan Sadik",
+    description: "Browse through all my web applications, backend systems, and software projects.",
+  },
 };
 
 export default function ProjectsPage() {
