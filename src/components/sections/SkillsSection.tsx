@@ -22,7 +22,7 @@ const skillCategories = [
   {
     title: "Databases",
     icon: <Database className="text-primary" size={24} />,
-    skills: ["MongoDB", "Firestore", "MySQL", "DynamoDB"]
+    skills: ["PostgreSQL", "MongoDB", "Firestore", "MySQL", "DynamoDB"]
   },
   {
     title: "Cloud",
@@ -37,12 +37,12 @@ const skillCategories = [
   {
     title: "AI Tools",
     icon: <Sparkles className="text-primary" size={24} />,
-    skills: ["GitHub Copilot", "Cursor", "ChatGPT", "Codex Code", "Gemini"]
+    skills: ["GitHub Copilot", "Cursor", "ChatGPT", "Claude Code", "Antigravity"]
   },
   {
     title: "Development",
     icon: <Wrench className="text-primary" size={24} />,
-    skills: ["Git", "GitHub", "Docker", "Postman", "npm"]
+    skills: ["Prisma", "Git", "GitHub", "Docker", "Postman"]
   },
   {
     title: "Concepts",

@@ -46,7 +46,7 @@ export function AboutSection() {
       <Container>
         <SectionHeader 
           title="About Me" 
-          subtitle="A glimpse into my professional journey, strengths, and what drives me as a software engineer."
+          subtitle="A glimpse into my professional journey, strengths, and what drives me as a software developer."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">

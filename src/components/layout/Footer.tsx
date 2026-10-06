@@ -3,13 +3,15 @@ import Link from 'next/link';
 import { Container } from '../common/Container';
 import { navLinks } from '@/data/navigation';
 import { Mail } from 'lucide-react';
-import { GitHub, LinkedIn } from '@mui/icons-material';
+import { GitHub, LinkedIn, Facebook, Instagram } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 
 const socialLinks = [
-  { name: 'GitHub', icon: <GitHub sx={{ fontSize: 20 }} />, href: 'https://github.com/farhan-sadik247' },
-  { name: 'LinkedIn', icon: <LinkedIn sx={{ fontSize: 20 }} />, href: 'https://www.linkedin.com/in/farhan-sadik247/' },
-  { name: 'Email', icon: <Mail size={20} />, href: 'mailto:md.farhan.sadik.578@gmail.com' },
+  { name: 'Md. Farhan Sadik on GitHub', icon: <GitHub sx={{ fontSize: 20 }} />, href: 'https://github.com/farhan-sadik247' },
+  { name: 'Md. Farhan Sadik on LinkedIn', icon: <LinkedIn sx={{ fontSize: 20 }} />, href: 'https://www.linkedin.com/in/farhan-sadik247/' },
+  { name: 'Md. Farhan Sadik on Facebook', icon: <Facebook sx={{ fontSize: 20 }} />, href: 'https://www.facebook.com/farhan.sadik247' },
+  { name: 'Md. Farhan Sadik on Instagram', icon: <Instagram sx={{ fontSize: 20 }} />, href: 'https://www.instagram.com/farhan.sadik247' },
+  { name: 'Email Md. Farhan Sadik', icon: <Mail size={20} />, href: 'mailto:md.farhan.sadik.578@gmail.com' },
 ];
 
 export function Footer() {
@@ -30,7 +32,7 @@ export function Footer() {
               <span className="font-bold text-2xl tracking-tight text-text-primary">Portfolio</span>
             </Link>
             <p className="text-text-muted max-w-sm">
-              Computer Science graduate and Software Engineer building impactful digital solutions with modern technologies.
+              Computer Science graduate and Software Developer building impactful digital solutions with modern technologies.
             </p>
           </div>
 

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
 import { Button, IconButton } from '@mui/material';
 import { Download, ArrowRight, Mail } from 'lucide-react';
-import { GitHub, LinkedIn } from '@mui/icons-material';
+import { GitHub, LinkedIn, Facebook, Instagram } from '@mui/icons-material';
 import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
 
@@ -34,13 +34,13 @@ export function HeroSection() {
                 Available for new opportunities
               </span>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-text-primary">
-                Hi, I&apos;m <span className="text-primary">Farhan Sadik</span>
+                Hi, I&apos;m <span className="text-primary">Md. Farhan Sadik</span>
               </h1>
             </motion.div>
             
             <motion.div variants={fadeInUp}>
               <h2 className="text-2xl md:text-3xl font-semibold text-text-muted">
-                Software Engineer
+                Software Developer
               </h2>
             </motion.div>
 
@@ -73,13 +73,13 @@ export function HeroSection() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-4">
-              <IconButton component="a" href="https://github.com/farhan-sadik247" target="_blank" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
+              <IconButton component="a" href="https://github.com/farhan-sadik247" target="_blank" aria-label="Md. Farhan Sadik on GitHub" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
                 <GitHub />
               </IconButton>
-              <IconButton component="a" href="https://www.linkedin.com/in/farhan-sadik247/" target="_blank" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
+              <IconButton component="a" href="https://www.linkedin.com/in/farhan-sadik247/" target="_blank" aria-label="Md. Farhan Sadik on LinkedIn" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
                 <LinkedIn />
               </IconButton>
-              <IconButton component="a" href="mailto:md.farhan.sadik.578@gmail.com" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
+              <IconButton component="a" href="mailto:md.farhan.sadik.578@gmail.com" aria-label="Email Md. Farhan Sadik" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
                 <Mail />
               </IconButton>
             </motion.div>
@@ -97,7 +97,7 @@ export function HeroSection() {
                 {/* Light Theme Image */}
                 <Image 
                   src="https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715354/farhan_profie_light_wgz6sd.png" 
-                  alt="Farhan Sadik Profile" 
+                  alt="Md. Farhan Sadik, software developer" 
                   fill
                   priority
                   className="object-cover block dark:hidden"
@@ -106,7 +106,7 @@ export function HeroSection() {
                 {/* Dark Theme Image */}
                 <Image 
                   src="https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715017/fathan_profile_inauvp.png" 
-                  alt="Farhan Sadik Profile Dark" 
+                  alt="Md. Farhan Sadik, software developer" 
                   fill
                   priority
                   className="object-cover hidden dark:block"

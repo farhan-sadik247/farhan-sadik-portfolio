@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "All Projects | Farhan Sadik",
+  title: "Projects",
   description: "Browse through all my web applications, backend systems, and software projects.",
 };
 
