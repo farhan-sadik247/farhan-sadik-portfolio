@@ -11,28 +11,18 @@ import { Briefcase, Calendar, MapPin } from 'lucide-react';
 const experiences = [
   {
     company: "Neeramoy Digital Services Ltd.",
-    role: "Graduate Engineer",
-    duration: "Jul 2026 - Present",
+    role: "Software Engineer",
+    duration: "April 2026 – Present",
     location: "Dhaka, Bangladesh",
     responsibilities: [
-      "Developed and maintained healthcare web applications using Angular, Python, Firebase Cloud Functions, and REST APIs while contributing across both frontend and backend modules.",
-      "Worked closely with senior engineers during Agile development, participating in code reviews, debugging, documentation, technical discussions, and feature planning while continuously improving code quality and maintainability.",
-      "Architected and deployed end-to-end Google Analytics 4 (GA4) integration across the primary web platform, accompanied by comprehensive technical documentation to standardize user behavior tracking and data analysis.",
-      "Used AI-assisted development tools to accelerate implementation while validating generated code through testing, debugging, and manual review to ensure correctness and security."
+      "Develop and maintain healthcare web applications and backend workflows using Angular, Python, Firebase Cloud Functions, AWS, and REST APIs, contributing across frontend and backend modules.",
+      "Built Firebase Cloud Messaging (FCM) push notification workflows delivering 90+ notifications per month, and architected an end-to-end Google Analytics 4 (GA4) integration with comprehensive technical documentation for consistent user behavior tracking.",
+      "Owned the end-to-end delivery of a healthcare microsite, taking it from development to production launch within 3 weeks, including implementation, project documentation, and post-launch improvements.",
+      "Collaborate with senior engineers in an Agile environment, participating in code reviews, debugging, technical discussions, and feature planning while maintaining code quality and reliability.",
+      "Leverage AI-assisted development tools to accelerate implementation while validating generated code through testing, debugging, and manual review."
     ],
-    technologies: ["Angular", "Python", "Firebase", "REST APIs", "AWS", "Google Analytics 4", "Agile", "Jira", "DynamoDB"],
-    achievements: "Improved code quality and maintainability through rigorous code reviews and AI-assisted tooling."
-  },
-  {
-    company: "Neeramoy Digital Services Ltd.",
-    role: "Software Engineer Intern (Python & AWS)",
-    duration: "Apr 2026 - Jun 2026",
-    location: "Dhaka, Bangladesh",
-    responsibilities: [
-      "Quickly learned new technologies including Firebase Cloud Functions, AWS Lambda, and Angular to implement scheduled push notifications, backend validation, API integration, and automated workflows."
-    ],
-    technologies: ["Python", "AWS Lambda", "Firebase", "Angular"],
-    achievements: ""
+    technologies: ["Angular", "Python", "Firebase", "AWS", "REST APIs", "Google Analytics 4", "Agile", "Jira", "DynamoDB"],
+    achievements: "Delivered a healthcare microsite from development to production in 3 weeks and implemented analytics and notification workflows supporting the platform's operational needs."
   }
 ];
 
