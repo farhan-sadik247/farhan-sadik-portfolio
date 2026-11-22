@@ -3,12 +3,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
-import { Button, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import { Download, ArrowRight, Mail } from 'lucide-react';
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
 import { RESUME_URL } from '@/data/navigation';
+const socials = [
+  { href: 'https://github.com/farhan-sadik247', label: 'Md. Farhan Sadik on GitHub', icon: <GitHub /> },
+  { href: 'https://www.linkedin.com/in/farhan-sadik247/', label: 'Md. Farhan Sadik on LinkedIn', icon: <LinkedIn /> },
+  { href: 'mailto:md.farhan.sadik.578@gmail.com', label: 'Email Md. Farhan Sadik', icon: <Mail size={22} /> },
+];
 
 export function HeroSection() {
   return (
@@ -46,45 +51,52 @@ export function HeroSection() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <p className="text-lg text-text-secondary max-w-lg leading-relaxed">
-                I design and develop scalable, user-focused web applications using React, Next.js, Angular, TypeScript, and Python, complemented by cloud technologies such as Firebase and AWS. I focus on building maintainable software, integrating REST APIs, and delivering high-quality solutions through modern engineering practices.
+              <p className="text-lg text-text-secondary max-w-xl leading-relaxed">
+                I build healthcare web applications at Neeramoy Digital Services, and most recently took a
+                microsite from development to <span className="text-text-primary font-medium">production in 3 weeks</span>.
+                I work across the stack with Angular, React, Next.js, Python, Firebase and AWS.
               </p>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-4">
-              <Button 
-                variant="contained" 
-                color="primary" 
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-2">
+              <Button
+                variant="contained"
+                color="primary"
                 size="large"
                 endIcon={<ArrowRight size={18} />}
                 href="#projects"
                 disableElevation
+                sx={{ px: 3.5, py: 1.4, fontSize: '1rem', fontWeight: 600 }}
               >
                 View Projects
               </Button>
-              <Button 
-                variant="outlined" 
-                color="primary" 
+              <Button
+                variant="outlined"
+                color="primary"
                 size="large"
                 startIcon={<Download size={18} />}
                 href={RESUME_URL}
                 download
+                sx={{ px: 3.5, py: 1.4, fontSize: '1rem', fontWeight: 600, borderWidth: 2, '&:hover': { borderWidth: 2 } }}
               >
                 Download CV
               </Button>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="flex items-center gap-4 pt-4">
-              <IconButton component="a" href="https://github.com/farhan-sadik247" target="_blank" aria-label="Md. Farhan Sadik on GitHub" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
-                <GitHub />
-              </IconButton>
-              <IconButton component="a" href="https://www.linkedin.com/in/farhan-sadik247/" target="_blank" aria-label="Md. Farhan Sadik on LinkedIn" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
-                <LinkedIn />
-              </IconButton>
-              <IconButton component="a" href="mailto:md.farhan.sadik.578@gmail.com" aria-label="Email Md. Farhan Sadik" sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}>
-                <Mail />
-              </IconButton>
-            </motion.div>
+            <motion.ul variants={fadeInUp} className="flex items-center gap-3 pt-2" aria-label="Social links">
+              {socials.map(({ href, label, icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    {...(href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+                    aria-label={label}
+                    className="flex items-center justify-center w-12 h-12 rounded-full border border-border bg-surface text-text-secondary hover:text-primary hover:border-primary transition-colors"
+                  >
+                    {icon}
+                  </a>
+                </li>
+              ))}
+            </motion.ul>
           </motion.div>
 
           {/* Right Content */}

@@ -10,162 +10,138 @@ import { SectionHeader } from '../common/SectionHeader';
 import { fadeInUp } from '@/utils/animations';
 import { ExternalLink } from 'lucide-react';
 import { GitHub } from '@mui/icons-material';
-import { IconButton, Button } from '@mui/material';
+import { Button } from '@mui/material';
+import { cn } from '@/utils/cn';
+import { categories, projectsData, type Project } from '@/data/projects';
 
-const categories = ["All", "Featured", "Frontend", "Full Stack", "Healthcare", "Database"];
+const MAX_TAGS = 4;
 
-const projectsData = [
-  {
-    id: 15,
-    title: "codeWithFarhan",
-    category: ["Full Stack", "Featured"],
-    description: "A full-stack Python Learning Platform designed for structured course delivery, coding practice, and progress tracking. It features role-based Admin, Teacher, and Student dashboards, course and lesson management, coding homeworks with Monaco Editor, Python code execution, automated test-case grading, submissions, and student progress tracking.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1790000737/python-learning-website_gfjg6d.png",
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Prisma", "PostgreSQL", "Supabase", "Python", "Monaco Editor", "Node.js", "Vercel"],
-    github: "https://github.com/farhan-sadik247/python-learning-platform",
-    live: "https://codewithfarhan.vercel.app/"
-  },
-  {
-    id: 1,
-    title: "Academic Journal Publish Website",
-    category: ["Full Stack", "Featured"],
-    description: "Built a full-stack academic journal platform supporting end-to-end workflow: submission → peer review → editorial decision → copyediting → publication. Integrated Google OAuth with role-based access and promotion system. Enabled real-time manuscript tracking, email notifications, and manual payment processing via bank transfer.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1790943687/journal_website_wg44zr.png",
-    techStack: ["Next.js", "MongoDB", "TypeScript", "NextAuth.js", "SCSS"],
-    github: "https://github.com/farhan-sadik247/journalWebsite.git",
-    live: "https://gjadt.vercel.app/"
-  },
-  {
-    id: 5,
-    title: "Shoe Bay - AI Shoe Assistant",
-    category: ["Full Stack", "Featured"],
-    description: "A conversational e-commerce web app for discovering and buying shoes that combines classic product browsing with an AI shopping assistant. Features include AI-powered search and recommendations, comprehensive shoe catalog, and cart functionality.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1790943687/shoe-bay_bgvmyg.png",
-    techStack: ["Next.js", "React", "TypeScript", "MongoDB", "NextAuth", "Gemini AI", "SCSS"],
-    github: "https://github.com/farhan-sadik247/ai-ecommerce-chatbot",
-    live: "https://shoe-bay247.vercel.app/"
-  },
-  {
-    id: 2,
-    title: "Tailor Maven",
-    category: "Full Stack",
-    description: "Developed an online tailoring platform with 3D suit previews, real-time customization using React Three Fiber, and live chat. Integrated Stripe payment gateway and OAuth2.0 login system for secure and seamless transactions.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708790/tailor_gpbqbw.png",
-    techStack: ["MERN Stack", "Stripe", "Socket.io", "React Three Fiber"],
-    github: "https://github.com/farhan-sadik247/TailorMaven.git",
-    live: "https://tailor-maven-app.vercel.app/"
-  },
-  {
-    id: 3,
-    title: "Neeramoy Digital Services Ltd.",
-    category: "Healthcare",
-    description: "Implemented scheduled push notifications, backend validation, REST API integrations, Google Analytics 4, and enhancements to the clinic attendant module while contributing to healthcare web applications built with Angular, Python, Firebase, and AWS Lambda.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784709397/neeramoy_hik3yq.png",
-    techStack: ["Angular", "Python", "Firebase", "AWS Lambda", "REST APIs"],
-    github: "https://github.com/farhan-sadik247",
-    live: "https://neeramoy.com/"
-  },
-  {
-    id: 4,
-    title: "Missing Link",
-    category: "Full Stack",
-    description: "Developed a decentralized application (DApp) for reporting, tracking, and assisting in finding missing individuals. Enabled public case visibility and secure on-chain reporting with smart contracts on Ethereum.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708783/missing-link_hsyqqw.jpg",
-    techStack: ["Solidity", "React.js", "Web3.js", "Truffle", "Docker"],
-    github: "https://github.com/farhan-sadik247/missing-person.git",
-    live: ""
-  },
-  {
-    id: 6,
-    title: "Dua - Islamic Supplications Website",
-    category: "Frontend",
-    description: "A modern web application for browsing, learning, and managing Islamic duas. Features include a fully functional categories sidebar, context-aware dua cards, and a complete admin dashboard for CRUD operations.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784711443/dua_cyv8av.png",
-    techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "SQLite", "Node.js"],
-    github: "https://github.com/farhan-sadik247/Dua---Islamic-Supplications-Website.git",
-    live: "https://dua-pori.vercel.app/"
-  },
-  {
-    id: 7,
-    title: "Disease Diagnosis & Symptom Checker",
-    category: ["Healthcare", "Database"],
-    description: "A comprehensive full-stack web application for exploring 395+ diseases and checking symptoms. Features an intelligent AI-powered symptom matching system, advanced filtering, and a medical-grade user interface.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784711443/disease_jnb3bj.png",
-    techStack: ["React 18", "TypeScript", "Vite", "Django", "SQLite", "SCSS"],
-    github: "https://github.com/farhan-sadik247/diseaseDiagonose",
-    live: "https://diseasediagonose.vercel.app/"
-  },
-  {
-    id: 8,
-    title: "Education Platform Website",
-    category: "Full Stack",
-    description: "Created an e-learning platform inspired by BUX, allowing teachers to upload and manage content. Implemented secure user roles for students and instructors. Enabled enrollment system and dashboard for viewing lectures and progress.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708783/edu_bv0gdn.png",
-    techStack: ["React.js", "Django", "PostgreSQL"],
-    github: "https://github.com/farhan-sadik247/EducationPlatForm-Frontend",
-    live: ""
-  },
-  {
-    id: 9,
-    title: "Snake Game",
-    category: "Frontend",
-    description: "A classic Snake game built with Python and Pygame featuring modern graphics and smooth gameplay mechanics. Includes beautiful brick-style borders, multiple game states, real-time scoring system, responsive controls with arrow keys.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708783/snakeGame_ixleu2.png",
-    techStack: ["Python", "Pygame"],
-    github: "https://github.com/farhan-sadik247/snakeGame_Python",
-    live: ""
-  },
-  {
-    id: 10,
-    title: "Mini Design Editor App",
-    category: "Frontend",
-    description: "Built a cross-platform mobile design editor with canvas rendering via Skia, enabling real-time drawing and manipulation. Integrated gesture-based interactions (drag, pinch, zoom) using Gesture Handler and smooth 60fps animations with Reanimated.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784709879/design-editor_vvmvxs.png",
-    techStack: ["React Native", "Expo", "TypeScript", "Skia", "Reanimated"],
-    github: "https://github.com/farhan-sadik247/dragNdrop_editorApp.git",
-    live: "https://tinyurl.com/DragNDrop2o"
-  },
-  {
-    id: 11,
-    title: "Calculator Website",
-    category: "Frontend",
-    description: "SadikCalc is a sleek and functional scientific calculator application designed to handle both basic arithmetic and advanced mathematical operations. Supports features such as trigonometric functions, logarithmic and exponential operations, constants like π and e.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708782/calc_eltav4.png",
-    techStack: ["MERN Stack", "Node.js", "Tailwind CSS"],
-    github: "https://github.com/farhan-sadik247/calculator-app.git",
-    live: "https://calcsdk.netlify.app/"
-  },
-  {
-    id: 12,
-    title: "House Rental Website",
-    category: "Full Stack",
-    description: "Designed a city-specific rental platform with searchable listings and booking functionality. Implemented an admin panel to manage property data and access control. Focused on ease-of-use for individuals relocating to Dhaka.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708785/tolet_fugpxb.png",
-    techStack: ["Django", "SQLite", "HTML/CSS"],
-    github: "https://github.com/farhan-sadik247/House-Rental-Website.git",
-    live: ""
-  },
-  {
-    id: 13,
-    title: "BD Medicine Database",
-    category: ["Full Stack", "Database"],
-    description: "A comprehensive Next.js web application for searching and browsing medicines and drugs available in Bangladesh. Features advanced search with full-text search across medicine names, generic names, manufacturers, and categories.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708782/bdmedicine_pnq77j.png",
-    techStack: ["Next.js", "React 19", "TypeScript", "MongoDB", "Tailwind CSS"],
-    github: "https://github.com/farhan-sadik247/bdmedicine_database",
-    live: "https://bdmedicine.vercel.app/"
-  },
-  {
-    id: 14,
-    title: "Age Calculator & Health Hub",
-    category: ["Healthcare", "Frontend"],
-    description: "A comprehensive health and wellness application that calculates exact age with precision and provides personalized health insights. Features include personalized BMI analysis, custom diet plans, health tips tailored to user needs.",
-    image: "https://res.cloudinary.com/dupf4kmfg/image/upload/v1784708782/ageCalc_x0mqos.png",
-    techStack: ["Next.js", "React", "TypeScript", "SCSS", "jsPDF"],
-    github: "https://github.com/farhan-sadik247/age-calculator",
-    live: "https://age-health-calculator.vercel.app/"
-  }
-];
+const toList = (category: Project['category']) => (Array.isArray(category) ? category : [category]);
+
+function ProjectCard({ project, featured }: { project: Project; featured: boolean }) {
+  const primaryUrl = project.live || project.github;
+  const tags = project.techStack.slice(0, MAX_TAGS);
+  const hiddenTags = project.techStack.length - tags.length;
+
+  return (
+    <motion.article
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.35 }}
+      className={cn(
+        'group relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden shadow-sm',
+        'transition-[box-shadow,border-color] duration-300 hover:shadow-xl hover:border-primary/60',
+        'focus-within:border-primary/60',
+        featured && 'md:col-span-2 lg:col-span-3 lg:flex-row'
+      )}
+    >
+      {/* Thumbnail */}
+      <div
+        className={cn(
+          'relative aspect-video overflow-hidden bg-surface border-b border-border',
+          featured && 'lg:w-3/5 lg:aspect-auto lg:min-h-80 lg:border-b-0 lg:border-r'
+        )}
+      >
+        <Image
+          src={project.image}
+          alt={`Screenshot of ${project.title}`}
+          fill
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes={featured ? '(max-width: 1024px) 100vw, 60vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
+        />
+      </div>
+
+      {/* Content */}
+      <div className={cn('p-6 flex flex-col flex-1', featured && 'lg:p-8 lg:justify-center')}>
+        <div className="flex flex-wrap gap-2 mb-3">
+          {toList(project.category).map((cat) => (
+            <span
+              key={cat}
+              className="px-2.5 py-0.5 bg-primary/10 text-primary text-xs font-semibold rounded-full whitespace-nowrap"
+            >
+              {cat}
+            </span>
+          ))}
+        </div>
+
+        <h3
+          className={cn(
+            'font-bold text-text-primary group-hover:text-primary transition-colors mb-3',
+            featured ? 'text-2xl lg:text-3xl' : 'text-xl'
+          )}
+        >
+          {/* Stretched link: makes the whole card clickable */}
+          <a
+            href={primaryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="after:absolute after:inset-0 after:content-[''] focus:outline-none"
+          >
+            {project.title}
+          </a>
+        </h3>
+
+        <p
+          className={cn(
+            'text-text-secondary text-[15px] leading-relaxed mb-5',
+            featured ? 'lg:text-base' : 'line-clamp-4 flex-1'
+          )}
+        >
+          {project.description}
+        </p>
+
+        <ul className="flex flex-wrap gap-2 mb-5" aria-label="Tech stack">
+          {tags.map((tech) => (
+            <li
+              key={tech}
+              className="px-2 py-1 bg-surface text-text-secondary text-[13px] font-medium rounded-md border border-border"
+            >
+              {tech}
+            </li>
+          ))}
+          {hiddenTags > 0 && (
+            <li className="px-2 py-1 text-text-muted text-[13px] font-medium" title={project.techStack.slice(MAX_TAGS).join(', ')}>
+              +{hiddenTags} more
+            </li>
+          )}
+        </ul>
+
+        {/* Actions sit above the stretched link */}
+        <div className="relative z-10 flex flex-wrap gap-3 pt-4 border-t border-border">
+          {project.live && (
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              startIcon={<ExternalLink size={16} />}
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              disableElevation
+            >
+              Live
+            </Button>
+          )}
+          {project.github && (
+            <Button
+              variant="outlined"
+              color="primary"
+              size="small"
+              startIcon={<GitHub sx={{ fontSize: 16 }} />}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Code
+            </Button>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
 interface ProjectsSectionProps {
   limit?: number;
@@ -174,40 +150,39 @@ interface ProjectsSectionProps {
   hideViewAll?: boolean;
 }
 
-export function ProjectsSection({ 
-  limit, 
-  title = "Featured Projects", 
+export function ProjectsSection({
+  limit,
+  title = "Featured Projects",
   subtitle = "A selection of my recent work, highlighting complex problem-solving and modern web development practices.",
   hideViewAll = false
 }: ProjectsSectionProps = {}) {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredProjects = projectsData.filter((project) => {
-    const projectCategories = Array.isArray(project.category) ? project.category : [project.category];
-    return activeCategory === "All" || projectCategories.includes(activeCategory);
-  });
+  const filteredProjects = projectsData.filter(
+    (project) => activeCategory === "All" || toList(project.category).includes(activeCategory)
+  );
 
   const displayedProjects = limit ? filteredProjects.slice(0, limit) : filteredProjects;
 
   return (
     <SectionWrapper id="projects">
       <Container>
-        <SectionHeader 
-          title={title} 
+        <SectionHeader
+          title={title}
           subtitle={subtitle}
         />
 
         {/* Filters */}
-        <motion.div variants={fadeInUp} className="flex justify-center mb-12">
-          {/* Categories */}
-          <div className="flex flex-wrap justify-center items-center gap-2">
+        <motion.div variants={fadeInUp} className="flex justify-center mb-10">
+          <div className="flex flex-wrap justify-center items-center gap-2" role="group" aria-label="Filter projects">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
+                aria-pressed={activeCategory === category}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
-                  activeCategory === category 
-                    ? 'bg-primary text-on-primary border-primary' 
+                  activeCategory === category
+                    ? 'bg-primary text-on-primary border-primary'
                     : 'bg-surface text-text-primary border-border hover:border-primary/50'
                 }`}
               >
@@ -218,91 +193,21 @@ export function ProjectsSection({
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <AnimatePresence>
-            {filteredProjects.length === 0 ? (
-              <motion.div 
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
+            {displayedProjects.length === 0 ? (
+              <motion.div
+                key="empty"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="col-span-1 md:col-span-2 text-center py-20"
+                className="col-span-full text-center py-20"
               >
                 <p className="text-text-muted text-lg">No projects found matching your criteria.</p>
               </motion.div>
             ) : (
-              displayedProjects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                  className="group flex flex-col bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl transition-all hover:border-primary/50"
-                >
-                  {/* Image Container */}
-                  <div className="relative h-64 overflow-hidden bg-surface">
-                    <Image 
-                      src={project.image} 
-                      alt={project.title} 
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                      {project.live && (
-                        <Button 
-                          variant="contained" 
-                          color="primary"
-                          startIcon={<ExternalLink size={18} />}
-                          href={project.live}
-                          target="_blank"
-                        >
-                          Live Demo
-                        </Button>
-                      )}
-                      {project.github && (
-                        <IconButton 
-                          component="a" 
-                          href={project.github} 
-                          target="_blank"
-                          sx={{ bgcolor: 'white', color: 'black', '&:hover': { bgcolor: 'gray.200' } }}
-                        >
-                          <GitHub sx={{ fontSize: 20 }} />
-                        </IconButton>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-2xl font-bold text-text-primary group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-2 justify-end ml-4">
-                        {(Array.isArray(project.category) ? project.category : [project.category]).map(cat => (
-                          <span key={cat} className="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full whitespace-nowrap">
-                            {cat}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-text-secondary text-[15px] leading-relaxed mb-6 flex-1">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
-                      {project.techStack.map((tech) => (
-                        <span 
-                          key={tech} 
-                          className="px-2 py-1 bg-surface text-text-secondary text-[13px] font-medium rounded-md border border-border"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
+              displayedProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} featured={index === 0} />
               ))
             )}
           </AnimatePresence>
@@ -314,17 +219,17 @@ export function ProjectsSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-16 flex justify-center"
+            className="mt-12 flex justify-center"
           >
-            <Button 
+            <Button
               component={Link}
               href="/projects"
-              variant="outlined" 
-              color="primary" 
+              variant="outlined"
+              color="primary"
               size="large"
               sx={{ borderRadius: '9999px', px: 4, py: 1.5, borderWidth: 2, '&:hover': { borderWidth: 2 } }}
             >
-              View All Projects
+              View All {projectsData.length} Projects
             </Button>
           </motion.div>
         )}

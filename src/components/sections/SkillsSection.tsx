@@ -2,82 +2,32 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import type { IconType } from 'react-icons';
-import {
-  SiAngular, SiReact, SiNextdotjs, SiTailwindcss, SiHtml5, SiCss,
-  SiTypescript, SiJavascript, SiPython, SiC,
-  SiNodedotjs, SiExpress, SiFirebase,
-  SiPostgresql, SiMysql, SiMongodb, SiPrisma,
-  SiGit, SiGithub, SiDocker, SiPostman, SiGithubcopilot, SiCursor, SiClaude,
-} from 'react-icons/si';
-import {
-  TbApi, TbBrandAws, TbLambda, TbDatabase, TbBrandReactNative, TbBrandOpenai, TbSparkles,
-} from 'react-icons/tb';
 import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
+import { skillIcons } from '@/data/skillIcons';
 
-type Skill = { name: string; icon: IconType };
-
-const skillGroups: { title: string; skills: Skill[] }[] = [
+const skillGroups: { title: string; skills: string[] }[] = [
   {
     title: 'Languages',
-    skills: [
-      { name: 'TypeScript', icon: SiTypescript },
-      { name: 'JavaScript', icon: SiJavascript },
-      { name: 'Python', icon: SiPython },
-      { name: 'C', icon: SiC },
-      { name: 'HTML5', icon: SiHtml5 },
-      { name: 'CSS3', icon: SiCss },
-    ],
+    skills: ['TypeScript', 'JavaScript', 'Python', 'C', 'HTML5', 'CSS3'],
   },
   {
     title: 'Frontend',
-    skills: [
-      { name: 'Angular', icon: SiAngular },
-      { name: 'React', icon: SiReact },
-      { name: 'Next.js', icon: SiNextdotjs },
-      { name: 'React Native', icon: TbBrandReactNative },
-      { name: 'Tailwind CSS', icon: SiTailwindcss },
-    ],
+    skills: ['Angular', 'React', 'Next.js', 'React Native', 'Tailwind CSS'],
   },
   {
     title: 'Backend & Cloud',
-    skills: [
-      { name: 'Node.js', icon: SiNodedotjs },
-      { name: 'Express.js', icon: SiExpress },
-      { name: 'REST APIs', icon: TbApi },
-      { name: 'Firebase', icon: SiFirebase },
-      { name: 'Cloud Functions & FCM', icon: SiFirebase },
-      { name: 'AWS', icon: TbBrandAws },
-      { name: 'AWS Lambda', icon: TbLambda },
-    ],
+    skills: ['Node.js', 'Express.js', 'REST APIs', 'Firebase', 'Cloud Functions & FCM', 'AWS', 'AWS Lambda'],
   },
   {
     title: 'Databases',
-    skills: [
-      { name: 'PostgreSQL', icon: SiPostgresql },
-      { name: 'MySQL', icon: SiMysql },
-      { name: 'MongoDB', icon: SiMongodb },
-      { name: 'Firestore', icon: SiFirebase },
-      { name: 'DynamoDB', icon: TbDatabase },
-      { name: 'Prisma', icon: SiPrisma },
-    ],
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firestore', 'DynamoDB', 'Prisma'],
   },
   {
     title: 'Tools & AI',
-    skills: [
-      { name: 'Git', icon: SiGit },
-      { name: 'GitHub', icon: SiGithub },
-      { name: 'Docker', icon: SiDocker },
-      { name: 'Postman', icon: SiPostman },
-      { name: 'GitHub Copilot', icon: SiGithubcopilot },
-      { name: 'Cursor', icon: SiCursor },
-      { name: 'Claude Code', icon: SiClaude },
-      { name: 'ChatGPT', icon: TbBrandOpenai },
-      { name: 'Antigravity', icon: TbSparkles },
-    ],
+    skills: ['Git', 'GitHub', 'Docker', 'Postman', 'GitHub Copilot', 'Cursor', 'Claude Code', 'ChatGPT', 'Antigravity'],
   },
 ];
 
@@ -114,15 +64,18 @@ export function SkillsSection() {
                 {group.title}
               </h3>
               <ul className="flex flex-wrap gap-2">
-                {group.skills.map(({ name, icon: Icon }) => (
-                  <li
-                    key={name}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-surface text-text-primary text-sm font-medium rounded-lg border border-border hover:border-primary/60 transition-colors"
-                  >
-                    <Icon aria-hidden="true" className="w-4 h-4 shrink-0 text-text-muted" />
-                    {name}
-                  </li>
-                ))}
+                {group.skills.map((name) => {
+                  const Icon = skillIcons[name];
+                  return (
+                    <li
+                      key={name}
+                      className="flex items-center gap-2 px-3 py-1.5 bg-surface text-text-primary text-sm font-medium rounded-lg border border-border hover:border-primary/60 transition-colors"
+                    >
+                      {Icon && <Icon aria-hidden="true" className="w-4 h-4 shrink-0 text-text-muted" />}
+                      {name}
+                    </li>
+                  );
+                })}
               </ul>
             </motion.div>
           ))}
