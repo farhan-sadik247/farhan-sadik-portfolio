@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
 import { Button } from '@mui/material';
-import { Download, ArrowRight, Mail } from 'lucide-react';
+import { Download, ArrowRight, ArrowUpRight, Mail } from 'lucide-react';
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
@@ -14,6 +14,26 @@ const socials = [
   { href: 'https://www.linkedin.com/in/farhan-sadik247/', label: 'Md. Farhan Sadik on LinkedIn', icon: <LinkedIn /> },
   { href: 'mailto:md.farhan.sadik.578@gmail.com', label: 'Email Md. Farhan Sadik', icon: <Mail size={22} /> },
 ];
+
+/** Inline link in the intro: accent underline that fills in on hover, small arrow nudges out. */
+function HeroLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group/link font-medium text-text-primary rounded-sm bg-linear-to-r from-primary/25 to-primary/25 bg-no-repeat bg-size-[100%_2px] bg-bottom hover:bg-size-[100%_100%] hover:text-text-primary transition-[background-size] duration-300 motion-reduce:transition-none"
+    >
+      {children}
+      <ArrowUpRight
+        aria-hidden="true"
+        size={14}
+        className="inline-block ml-0.5 -mt-0.5 text-primary transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+      />
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
 
 export function HeroSection() {
   return (
@@ -53,9 +73,11 @@ export function HeroSection() {
 
             <motion.div variants={fadeInUp}>
               <p className="text-lg text-text-secondary max-w-xl leading-relaxed">
-                I build healthcare web applications at Neeramoy Digital Services, and most recently took a
-                microsite from development to <span className="text-text-primary font-medium">production in 3 weeks</span>.
-                I work across the stack with Angular, React, Next.js, Python, Firebase and AWS.
+                I build healthcare web applications at Neeramoy Digital Services, working across the stack with
+                Angular, React, Next.js, Python, Firebase and AWS. Outside work I build things I&apos;m curious about,
+                like an <HeroLink href="https://shoe-bay247.vercel.app/">AI shopping assistant</HeroLink>, a{' '}
+                <HeroLink href="https://codewithfarhan.vercel.app/">Python course platform that grades code</HeroLink>{' '}
+                and a <HeroLink href="https://doi.org/10.48550/arXiv.2507.06530">model that turns speech into 3D sign language</HeroLink>.
               </p>
             </motion.div>
 
