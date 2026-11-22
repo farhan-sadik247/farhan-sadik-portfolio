@@ -99,7 +99,7 @@ export function ContactSection() {
                   <CheckCircle2 size={40} />
                 </div>
                 <h3 className="text-2xl font-bold text-text-primary mb-2">Message Sent!</h3>
-                <p className="text-text-muted">
+                <p className="text-text-secondary">
                   Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                 </p>
                 <button
@@ -125,7 +125,7 @@ export function ContactSection() {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className={`w-full px-4 py-3.5 rounded-xl border ${errors.name ? 'border-red-500' : 'border-border dark:border-slate-600'} bg-surface dark:bg-slate-800/50 text-text-primary placeholder:text-text-muted/70 focus:outline-none focus:ring-2 focus:ring-slate-500/30 transition-all`}
+                      className={`w-full px-4 py-3.5 rounded-xl border ${errors.name ? 'border-red-500' : 'border-border'} bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all`}
                       {...register("name")}
                     />
                     {errors.name && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.name.message}</p>}
@@ -134,7 +134,7 @@ export function ContactSection() {
                     <input
                       type="email"
                       placeholder="Email Address"
-                      className={`w-full px-4 py-3.5 rounded-xl border ${errors.email ? 'border-red-500' : 'border-border dark:border-slate-600'} bg-surface dark:bg-slate-800/50 text-text-primary placeholder:text-text-muted/70 focus:outline-none focus:ring-2 focus:ring-slate-500/30 transition-all`}
+                      className={`w-full px-4 py-3.5 rounded-xl border ${errors.email ? 'border-red-500' : 'border-border'} bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all`}
                       {...register("email")}
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.email.message}</p>}
@@ -145,7 +145,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     placeholder="Subject"
-                    className={`w-full px-4 py-3.5 rounded-xl border ${errors.subject ? 'border-red-500' : 'border-border dark:border-slate-600'} bg-surface dark:bg-slate-800/50 text-text-primary placeholder:text-text-muted/70 focus:outline-none focus:ring-2 focus:ring-slate-500/30 transition-all`}
+                    className={`w-full px-4 py-3.5 rounded-xl border ${errors.subject ? 'border-red-500' : 'border-border'} bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all`}
                     {...register("subject")}
                   />
                   {errors.subject && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.subject.message}</p>}
@@ -155,7 +155,7 @@ export function ContactSection() {
                   <textarea
                     placeholder="Message"
                     rows={5}
-                    className={`w-full px-4 py-3.5 rounded-xl border ${errors.message ? 'border-red-500' : 'border-border dark:border-slate-600'} bg-surface dark:bg-slate-800/50 text-text-primary placeholder:text-text-muted/70 focus:outline-none focus:ring-2 focus:ring-slate-500/30 transition-all resize-none`}
+                    className={`w-full px-4 py-3.5 rounded-xl border ${errors.message ? 'border-red-500' : 'border-border'} bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all resize-none`}
                     {...register("message")}
                   />
                   {errors.message && <p className="text-red-500 text-xs mt-1.5 ml-1">{errors.message.message}</p>}
@@ -164,7 +164,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 text-base font-semibold text-white bg-bluegrey-500 hover:bg-bluegrey-600 active:bg-bluegrey-700 rounded-xl transition-colors disabled:opacity-70 disabled:cursor-not-allowed shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 text-base font-semibold text-on-primary bg-primary hover:bg-primary-hover rounded-xl transition-colors disabled:opacity-70 disabled:cursor-not-allowed shadow-sm"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                   {!isSubmitting && <Send size={18} />}

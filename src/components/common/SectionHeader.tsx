@@ -12,13 +12,13 @@ export function SectionHeader({ title, subtitle, align = 'center' }: SectionHead
   return (
     <motion.div 
       variants={fadeInUp}
-      className={`mb-12 md:mb-16 ${align === 'center' ? 'text-center mx-auto' : 'text-left'} max-w-3xl`}
+      className={`mb-10 md:mb-12 ${align === 'center' ? 'text-center mx-auto' : 'text-left'} max-w-3xl`}
     >
       <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary mb-4">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-lg text-text-muted">
+        <p className="text-lg text-text-secondary">
           {subtitle}
         </p>
       )}

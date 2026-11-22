@@ -23,7 +23,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://farhansadik.me"),
   title: {
-    default: "Md. Farhan Sadik | Software Developer",
+    default: "Md. Farhan Sadik | Software Engineer",
     template: "%s | Md. Farhan Sadik"
   },
   description: "Md. Farhan Sadik is a software developer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://farhansadik.me/",
-    title: "Md. Farhan Sadik | Software Developer",
+    title: "Md. Farhan Sadik | Software Engineer",
     description: "Md. Farhan Sadik is a software developer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.",
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Md. Farhan Sadik | Software Developer",
+    title: "Md. Farhan Sadik | Software Engineer",
     description: "Md. Farhan Sadik is a software developer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.",
     images: ["https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715354/farhan_profie_light_wgz6sd.png"]
   }
@@ -69,7 +69,7 @@ export default function RootLayout({
               "name": "Md. Farhan Sadik",
               "alternateName": "Farhan Sadik",
               "url": "https://farhansadik.me/",
-              "jobTitle": "Software Developer",
+              "jobTitle": "Software Engineer",
               "worksFor": {
                 "@type": "Organization",
                 "name": "Neeramoy Digital Services Ltd."

@@ -58,7 +58,7 @@ export function AchievementsSection() {
               className="p-6 bg-card rounded-2xl border border-border shadow-sm flex gap-6 hover:shadow-md transition-shadow group"
             >
               <div className="shrink-0">
-                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">
                   {item.icon}
                 </div>
               </div>
@@ -75,7 +75,7 @@ export function AchievementsSection() {
                 <h3 className="text-xl font-bold text-text-primary mb-2">
                   {item.title}
                 </h3>
-                <p className="text-text-muted text-sm leading-relaxed">
+                <p className="text-text-secondary text-[15px] leading-relaxed">
                   {item.description}
                 </p>
               </div>

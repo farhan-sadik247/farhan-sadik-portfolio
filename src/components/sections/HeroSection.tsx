@@ -8,6 +8,7 @@ import { Download, ArrowRight, Mail } from 'lucide-react';
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/utils/animations';
+import { RESUME_URL } from '@/data/navigation';
 
 export function HeroSection() {
   return (
@@ -39,13 +40,13 @@ export function HeroSection() {
             </motion.div>
             
             <motion.div variants={fadeInUp}>
-              <h2 className="text-2xl md:text-3xl font-semibold text-text-muted">
-                Software Developer
+              <h2 className="text-2xl md:text-3xl font-semibold text-text-secondary">
+                Software Engineer
               </h2>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <p className="text-lg text-text-muted max-w-lg leading-relaxed">
+              <p className="text-lg text-text-secondary max-w-lg leading-relaxed">
                 I design and develop scalable, user-focused web applications using React, Next.js, Angular, TypeScript, and Python, complemented by cloud technologies such as Firebase and AWS. I focus on building maintainable software, integrating REST APIs, and delivering high-quality solutions through modern engineering practices.
               </p>
             </motion.div>
@@ -66,9 +67,10 @@ export function HeroSection() {
                 color="primary" 
                 size="large"
                 startIcon={<Download size={18} />}
-                href="#resume"
+                href={RESUME_URL}
+                download
               >
-                View Resume
+                Download CV
               </Button>
             </motion.div>
 

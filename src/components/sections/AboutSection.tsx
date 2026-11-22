@@ -51,7 +51,7 @@ export function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
           {/* Left: Narrative */}
-          <motion.div variants={fadeInUp} className="space-y-6 text-text-muted leading-relaxed text-lg">
+          <motion.div variants={fadeInUp} className="space-y-6 text-text-secondary leading-relaxed text-lg">
             <p>
               I&apos;m a Computer Science graduate with professional experience building robust healthcare applications. My journey is defined by a passion for continuous learning and delivering impactful digital solutions.
             </p>
@@ -78,7 +78,7 @@ export function AboutSection() {
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-text-primary mb-2">{item.title}</h3>
-                <p className="text-text-muted text-sm leading-relaxed">{item.description}</p>
+                <p className="text-text-secondary text-[15px] leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </motion.div>

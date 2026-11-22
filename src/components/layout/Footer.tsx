@@ -31,8 +31,8 @@ export function Footer() {
               <div className="h-8 w-0.5 bg-slate-600/50 rounded-full mx-1"></div>
               <span className="font-bold text-2xl tracking-tight text-text-primary">Portfolio</span>
             </Link>
-            <p className="text-text-muted max-w-sm">
-              Computer Science graduate and Software Developer building impactful digital solutions with modern technologies.
+            <p className="text-text-secondary max-w-sm">
+              Computer Science graduate and Software Engineer building impactful digital solutions with modern technologies.
             </p>
           </div>
 

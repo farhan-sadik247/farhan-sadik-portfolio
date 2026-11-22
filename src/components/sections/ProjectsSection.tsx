@@ -207,7 +207,7 @@ export function ProjectsSection({
                 onClick={() => setActiveCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
                   activeCategory === category 
-                    ? 'bg-primary text-white border-primary' 
+                    ? 'bg-primary text-on-primary border-primary' 
                     : 'bg-surface text-text-primary border-border hover:border-primary/50'
                 }`}
               >
@@ -288,14 +288,14 @@ export function ProjectsSection({
                         ))}
                       </div>
                     </div>
-                    <p className="text-text-muted text-sm leading-relaxed mb-6 flex-1">
+                    <p className="text-text-secondary text-[15px] leading-relaxed mb-6 flex-1">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
                       {project.techStack.map((tech) => (
                         <span 
                           key={tech} 
-                          className="px-2 py-1 bg-surface text-text-secondary text-xs font-medium rounded-md border border-border/50"
+                          className="px-2 py-1 bg-surface text-text-secondary text-[13px] font-medium rounded-md border border-border"
                         >
                           {tech}
                         </span>

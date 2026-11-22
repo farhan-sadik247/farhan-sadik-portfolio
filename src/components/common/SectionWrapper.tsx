@@ -23,7 +23,7 @@ export function SectionWrapper({ children, className, id, ...props }: SectionWra
           transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
         }
       }}
-      className={cn("py-20 md:py-32", className)}
+      className={cn("py-14 md:py-20", className)}
       {...props}
     >
       {children}

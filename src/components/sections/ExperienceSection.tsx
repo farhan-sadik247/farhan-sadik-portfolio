@@ -75,7 +75,7 @@ export function ExperienceSection() {
                   </div>
 
                   <div className="space-y-4 mb-6">
-                    <ul className="list-disc list-outside ml-5 space-y-2 text-text-muted leading-relaxed">
+                    <ul className="list-disc list-outside ml-5 space-y-2 text-text-secondary leading-relaxed">
                       {exp.responsibilities.map((resp, idx) => (
                         <li key={idx}>{resp}</li>
                       ))}
@@ -84,7 +84,7 @@ export function ExperienceSection() {
                     {exp.achievements && (
                       <div className="p-4 bg-primary/5 rounded-xl border border-primary/10">
                         <span className="font-semibold text-text-primary mr-2">Key Achievement:</span>
-                        <span className="text-text-muted">{exp.achievements}</span>
+                        <span className="text-text-secondary">{exp.achievements}</span>
                       </div>
                     )}
                   </div>
@@ -93,7 +93,7 @@ export function ExperienceSection() {
                     {exp.technologies.map((tech, idx) => (
                       <span 
                         key={idx}
-                        className="px-2.5 py-1 text-xs font-medium bg-surface text-text-primary rounded-md border border-border"
+                        className="px-2.5 py-1 text-[13px] font-medium bg-surface text-text-primary rounded-md border border-border"
                       >
                         {tech}
                       </span>

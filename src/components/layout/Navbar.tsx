@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import logo from '@/assets/images/logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@mui/material';
@@ -22,8 +20,9 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    
-    window.addEventListener('scroll', handleScroll);
+
+    handleScroll(); // set correct state when the page loads already scrolled
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -52,9 +51,10 @@ export function Navbar() {
         {!isAuthOrShortenerPage && (
           <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
+              <Link
+                key={link.name}
                 href={link.href}
+                {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
                 className="text-sm font-medium text-text-primary/80 hover:text-primary transition-colors"
               >
                 {link.name}
@@ -109,6 +109,7 @@ export function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-lg font-medium hover:text-primary transition-colors"
                 >
