@@ -1,11 +1,8 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
-import { fadeInUp, staggerContainer } from '@/utils/animations';
+import { Reveal, RevealGroup } from '../common/Reveal';
 import { Briefcase, Calendar, MapPin, Trophy } from 'lucide-react';
 import { skillIcons } from '@/data/skillIcons';
 
@@ -48,15 +45,16 @@ export function ExperienceSection() {
     <SectionWrapper id="experience" className="bg-surface/30">
       <Container>
         <SectionHeader
+          className="max-w-4xl"
+          eyebrow="02 / Experience"
           title="Work Experience"
           subtitle="Where I've worked and the impact I've made."
         />
 
-        <motion.div variants={staggerContainer} className="max-w-4xl mx-auto space-y-8">
+        <RevealGroup className="max-w-4xl mx-auto space-y-8">
           {experiences.map((exp) => (
-            <motion.article
+            <Reveal as="article"
               key={`${exp.company}-${exp.role}`}
-              variants={fadeInUp}
               className="p-6 md:p-8 bg-card rounded-2xl border border-border shadow-sm"
             >
               <header className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
@@ -112,9 +110,9 @@ export function ExperienceSection() {
                   );
                 })}
               </ul>
-            </motion.article>
+            </Reveal>
           ))}
-        </motion.div>
+        </RevealGroup>
       </Container>
     </SectionWrapper>
   );

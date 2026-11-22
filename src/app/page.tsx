@@ -21,7 +21,7 @@ export default function Home() {
       <AboutSection />
       <ExperienceSection />
       <SkillsSection />
-      <ProjectsSection limit={4} />
+      <ProjectsSection limit={4} eyebrow="04 / Projects" />
       <AchievementsSection />
       <ContactSection />
     </div>

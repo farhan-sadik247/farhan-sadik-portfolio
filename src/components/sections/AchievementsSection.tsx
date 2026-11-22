@@ -1,11 +1,8 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
-import { fadeInUp, staggerContainer } from '@/utils/animations';
+import { Reveal, RevealGroup } from '../common/Reveal';
 import { Shield, BookOpen, ExternalLink, Medal, type LucideIcon } from 'lucide-react';
 
 type Achievement = {
@@ -59,19 +56,19 @@ export function AchievementsSection() {
     <SectionWrapper id="achievements" className="bg-surface/30">
       <Container>
         <SectionHeader
+          className="max-w-5xl"
+          eyebrow="05 / Achievements"
           title="Achievements & Recognition"
           subtitle="Competitions and research outside of day-to-day work."
         />
 
-        <motion.div
-          variants={staggerContainer}
+        <RevealGroup
           className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"
         >
           {achievements.map(({ result, resultLabel, title, category, date, icon: Icon, description, link, tall }) => (
-            <motion.article
+            <Reveal as="article"
               key={title}
-              variants={fadeInUp}
-              className={`flex flex-col p-6 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md hover:border-primary/60 transition-[box-shadow,border-color] duration-300 ${tall ? 'md:row-span-2' : ''}`}
+              className={`flex flex-col p-6 bg-card rounded-2xl border border-border shadow-sm hover:-translate-y-1 hover:shadow-lg hover:border-primary/60 transition-[box-shadow,border-color,translate] duration-300 motion-reduce:hover:translate-y-0 ${tall ? 'md:row-span-2' : ''}`}
             >
               <div className="flex items-start justify-between gap-4 mb-5">
                 <div>
@@ -99,9 +96,9 @@ export function AchievementsSection() {
                   {link.label} <ExternalLink size={14} aria-hidden="true" />
                 </a>
               )}
-            </motion.article>
+            </Reveal>
           ))}
-        </motion.div>
+        </RevealGroup>
       </Container>
     </SectionWrapper>
   );

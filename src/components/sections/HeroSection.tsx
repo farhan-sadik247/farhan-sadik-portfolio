@@ -1,17 +1,14 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
-import { Button } from '@mui/material';
+import { ButtonLink } from '../common/ButtonLink';
 import { Download, ArrowRight, ArrowUpRight, Mail } from 'lucide-react';
-import { GitHub, LinkedIn } from '@mui/icons-material';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Image from 'next/image';
-import { fadeInUp, staggerContainer } from '@/utils/animations';
 import { RESUME_URL } from '@/data/navigation';
+
 const socials = [
-  { href: 'https://github.com/farhan-sadik247', label: 'Md. Farhan Sadik on GitHub', icon: <GitHub /> },
-  { href: 'https://www.linkedin.com/in/farhan-sadik247/', label: 'Md. Farhan Sadik on LinkedIn', icon: <LinkedIn /> },
+  { href: 'https://github.com/farhan-sadik247', label: 'Md. Farhan Sadik on GitHub', icon: <FaGithub size={22} /> },
+  { href: 'https://www.linkedin.com/in/farhan-sadik247/', label: 'Md. Farhan Sadik on LinkedIn', icon: <FaLinkedin size={22} /> },
   { href: 'mailto:md.farhan.sadik.578@gmail.com', label: 'Email Md. Farhan Sadik', icon: <Mail size={22} /> },
 ];
 
@@ -41,37 +38,34 @@ export function HeroSection() {
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]" />
-        <div className="absolute left-[-10%] top-[-10vh] w-[40vw] h-[40vh] rounded-full bg-primary/20 blur-[100px] opacity-50 animate-pulse" />
-        <div className="absolute right-[-10%] top-[70vh] w-[40vw] h-[40vh] rounded-full bg-secondary/20 blur-[100px] opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
+        {/* Soft glows drawn with radial gradients: same look as a large blur() filter,
+            but far cheaper to paint on slow devices. */}
+        <div className="absolute left-[-20%] top-[-30vh] w-[60vw] h-[80vh] bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--primary)_14%,transparent),transparent)] animate-pulse" />
+        <div className="absolute right-[-20%] top-[50vh] w-[60vw] h-[80vh] bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--secondary)_14%,transparent),transparent)] animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
       <Container className="relative z-10 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left Content: rendered without an entrance animation. This text is the
-              Largest Contentful Paint element, so it must be visible before JS loads. */}
-          <motion.div
-            variants={staggerContainer}
-            initial={false}
-            animate="visible"
-            className="flex flex-col gap-6"
-          >
-            <motion.div variants={fadeInUp}>
+          {/* Left Content: no entrance animation. This text is the Largest Contentful
+              Paint element, so it must be visible as soon as the HTML arrives. */}
+          <div className="flex flex-col gap-6">
+            <div>
               <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary font-medium text-sm mb-4 border border-primary/20">
                 Available for new opportunities
               </span>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-text-primary">
                 Hi, I&apos;m <span className="text-primary">Md. Farhan Sadik</span>
               </h1>
-            </motion.div>
+            </div>
             
-            <motion.div variants={fadeInUp}>
+            <div>
               <h2 className="text-2xl md:text-3xl font-semibold text-text-secondary">
                 Software Engineer
               </h2>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <p className="text-lg text-text-secondary max-w-xl leading-relaxed">
                 I build healthcare web applications at Neeramoy Digital Services, working across the stack with
                 Angular, React, Next.js, Python, Firebase and AWS. Outside work I build things I&apos;m curious about,
@@ -79,34 +73,18 @@ export function HeroSection() {
                 <HeroLink href="https://codewithfarhan.vercel.app/">Python course platform that grades code</HeroLink>{' '}
                 and a <HeroLink href="https://doi.org/10.48550/arXiv.2507.06530">model that turns speech into 3D sign language</HeroLink>.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-2">
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                endIcon={<ArrowRight size={18} />}
-                href="#projects"
-                disableElevation
-                sx={{ px: 3.5, py: 1.4, fontSize: '1rem', fontWeight: 600 }}
-              >
+            <div className="flex flex-wrap gap-4 pt-2">
+              <ButtonLink href="#projects" size="lg" endIcon={<ArrowRight size={18} />}>
                 View Projects
-              </Button>
-              <Button
-                variant="outlined"
-                color="primary"
-                size="large"
-                startIcon={<Download size={18} />}
-                href={RESUME_URL}
-                download
-                sx={{ px: 3.5, py: 1.4, fontSize: '1rem', fontWeight: 600, borderWidth: 2, '&:hover': { borderWidth: 2 } }}
-              >
+              </ButtonLink>
+              <ButtonLink href={RESUME_URL} download variant="outlined" size="lg" startIcon={<Download size={18} />}>
                 Download CV
-              </Button>
-            </motion.div>
+              </ButtonLink>
+            </div>
 
-            <motion.ul variants={fadeInUp} className="flex items-center gap-3 pt-2" aria-label="Social links">
+            <ul className="flex items-center gap-3 pt-2" aria-label="Social links">
               {socials.map(({ href, label, icon }) => (
                 <li key={label}>
                   <a
@@ -119,16 +97,11 @@ export function HeroSection() {
                   </a>
                 </li>
               ))}
-            </motion.ul>
-          </motion.div>
+            </ul>
+          </div>
 
-          {/* Right Content */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="flex justify-center relative mt-8 lg:mt-0"
-          >
+          {/* Right Content: CSS-only entrance so the photo never waits on JavaScript */}
+          <div className="flex justify-center relative mt-8 lg:mt-0 animate-hero-photo">
             <div className="relative w-full max-w-75 sm:max-w-87.5 lg:w-100 h-87.5 sm:h-100 lg:h-125 rounded-2xl overflow-hidden border border-border/50 bg-surface shadow-2xl p-4">
               <div className="w-full h-full rounded-xl bg-card flex items-center justify-center border border-border/30 overflow-hidden relative">
                 {/* Light Theme Image */}
@@ -151,8 +124,7 @@ export function HeroSection() {
                 />
               </div>
             </div>
-
-          </motion.div>
+          </div>
 
         </div>
       </Container>

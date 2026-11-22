@@ -3,14 +3,13 @@ import Link from 'next/link';
 import { Container } from '../common/Container';
 import { navLinks } from '@/data/navigation';
 import { Mail } from 'lucide-react';
-import { GitHub, LinkedIn, Facebook, Instagram } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const socialLinks = [
-  { name: 'Md. Farhan Sadik on GitHub', icon: <GitHub sx={{ fontSize: 20 }} />, href: 'https://github.com/farhan-sadik247' },
-  { name: 'Md. Farhan Sadik on LinkedIn', icon: <LinkedIn sx={{ fontSize: 20 }} />, href: 'https://www.linkedin.com/in/farhan-sadik247/' },
-  { name: 'Md. Farhan Sadik on Facebook', icon: <Facebook sx={{ fontSize: 20 }} />, href: 'https://www.facebook.com/farhan.sadik247' },
-  { name: 'Md. Farhan Sadik on Instagram', icon: <Instagram sx={{ fontSize: 20 }} />, href: 'https://www.instagram.com/farhan.sadik247' },
+  { name: 'Md. Farhan Sadik on GitHub', icon: <FaGithub size={20} />, href: 'https://github.com/farhan-sadik247' },
+  { name: 'Md. Farhan Sadik on LinkedIn', icon: <FaLinkedin size={20} />, href: 'https://www.linkedin.com/in/farhan-sadik247/' },
+  { name: 'Md. Farhan Sadik on Facebook', icon: <FaFacebook size={20} />, href: 'https://www.facebook.com/farhan.sadik247' },
+  { name: 'Md. Farhan Sadik on Instagram', icon: <FaInstagram size={20} />, href: 'https://www.instagram.com/farhan.sadik247' },
   { name: 'Email Md. Farhan Sadik', icon: <Mail size={20} />, href: 'mailto:md.farhan.sadik.578@gmail.com' },
 ];
 
@@ -55,14 +54,14 @@ export function Footer() {
 
           {/* Features */}
           <div className="col-span-1">
-            <h3 className="font-semibold text-lg mb-4">Features</h3>
+            <h3 className="font-semibold text-lg mb-4">Tools</h3>
             <ul className="space-y-3">
               <li>
                 <Link 
                   href="/shortener"
                   className="text-text-muted hover:text-primary transition-colors text-sm"
                 >
-                  shortenURL
+                  URL Shortener
                 </Link>
               </li>
             </ul>
@@ -73,17 +72,15 @@ export function Footer() {
             <h3 className="font-semibold text-lg mb-4">Connect</h3>
             <div className="flex gap-2">
               {socialLinks.map((social) => (
-                <IconButton 
+                <a
                   key={social.name}
-                  component="a"
                   href={social.href}
                   {...(social.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                   aria-label={social.name}
-                  size="small"
-                  sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}
+                  className="flex items-center justify-center w-10 h-10 rounded-full text-text-muted hover:text-primary hover:bg-hover transition-colors"
                 >
                   {social.icon}
-                </IconButton>
+                </a>
               ))}
             </div>
           </div>

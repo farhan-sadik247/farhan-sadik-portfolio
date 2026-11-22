@@ -3,7 +3,7 @@
 import { useActionState, useState } from 'react'
 import { login, signup } from '@/app/actions/auth'
 import { AlertCircle, Loader2, Check, X, Eye, EyeOff } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 export default function AuthPage() {
   const [isFlipped, setIsFlipped] = useState(false)
@@ -46,7 +46,7 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-4 overflow-hidden perspective-[2000px]">
-      <motion.div
+      <m.div
         className="relative w-full max-w-md h-[650px]"
         initial={false}
         animate={{ rotateY: isFlipped ? -180 : 0 }}
@@ -250,7 +250,7 @@ export default function AuthPage() {
             </button>
           </p>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   )
 }

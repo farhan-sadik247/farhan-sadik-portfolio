@@ -2,15 +2,14 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
 import { fadeInUp } from '@/utils/animations';
 import { ExternalLink } from 'lucide-react';
-import { GitHub } from '@mui/icons-material';
-import { Button } from '@mui/material';
+import { FaGithub } from 'react-icons/fa';
+import { ButtonLink } from '../common/ButtonLink';
 import { cn } from '@/utils/cn';
 import { categories, projectsData, type Project } from '@/data/projects';
 
@@ -24,7 +23,7 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
   const hiddenTags = project.techStack.length - tags.length;
 
   return (
-    <motion.article
+    <m.article
       layout
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -32,7 +31,7 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
       transition={{ duration: 0.35 }}
       className={cn(
         'group relative flex flex-col bg-card rounded-2xl border border-border overflow-hidden shadow-sm',
-        'transition-[box-shadow,border-color] duration-300 hover:shadow-xl hover:border-primary/60',
+        'transition-[box-shadow,border-color,translate] duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/60 motion-reduce:hover:translate-y-0',
         'focus-within:border-primary/60',
         featured && 'md:col-span-2 lg:col-span-3 lg:flex-row'
       )}
@@ -111,35 +110,33 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
         {/* Actions sit above the stretched link */}
         <div className="relative z-10 flex flex-wrap gap-3 pt-4 border-t border-border">
           {project.live && (
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              startIcon={<ExternalLink size={16} />}
+            <ButtonLink
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              disableElevation
+              size="sm"
+              startIcon={<ExternalLink size={16} />}
+              aria-label={`${project.title}: live site (opens in a new tab)`}
             >
               Live
-            </Button>
+            </ButtonLink>
           )}
           {project.github && (
-            <Button
-              variant="outlined"
-              color="primary"
-              size="small"
-              startIcon={<GitHub sx={{ fontSize: 16 }} />}
+            <ButtonLink
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
+              variant="outlined"
+              size="sm"
+              startIcon={<FaGithub size={16} />}
+              aria-label={`${project.title}: source code on GitHub (opens in a new tab)`}
             >
               Code
-            </Button>
+            </ButtonLink>
           )}
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -148,13 +145,15 @@ interface ProjectsSectionProps {
   title?: string;
   subtitle?: string;
   hideViewAll?: boolean;
+  eyebrow?: string;
 }
 
 export function ProjectsSection({
   limit,
   title = "Featured Projects",
   subtitle = "A selection of my recent work, highlighting complex problem-solving and modern web development practices.",
-  hideViewAll = false
+  hideViewAll = false,
+  eyebrow,
 }: ProjectsSectionProps = {}) {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -168,13 +167,14 @@ export function ProjectsSection({
     <SectionWrapper id="projects">
       <Container>
         <SectionHeader
+          eyebrow={eyebrow}
           title={title}
           subtitle={subtitle}
         />
 
         {/* Filters */}
-        <motion.div variants={fadeInUp} className="flex justify-center mb-10">
-          <div className="flex flex-wrap justify-center items-center gap-2" role="group" aria-label="Filter projects">
+        <m.div variants={fadeInUp} className="flex mb-8">
+          <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter projects">
             {categories.map((category) => (
               <button
                 key={category}
@@ -190,13 +190,13 @@ export function ProjectsSection({
               </button>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Projects Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <m.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {displayedProjects.length === 0 ? (
-              <motion.div
+              <m.div
                 key="empty"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -204,34 +204,27 @@ export function ProjectsSection({
                 className="col-span-full text-center py-20"
               >
                 <p className="text-text-muted text-lg">No projects found matching your criteria.</p>
-              </motion.div>
+              </m.div>
             ) : (
               displayedProjects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} featured={index === 0} />
               ))
             )}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
 
         {limit && !hideViewAll && displayedProjects.length > 0 && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-12 flex justify-center"
           >
-            <Button
-              component={Link}
-              href="/projects"
-              variant="outlined"
-              color="primary"
-              size="large"
-              sx={{ borderRadius: '9999px', px: 4, py: 1.5, borderWidth: 2, '&:hover': { borderWidth: 2 } }}
-            >
+            <ButtonLink href="/projects" variant="outlined" size="lg" className="rounded-full px-8">
               View All {projectsData.length} Projects
-            </Button>
-          </motion.div>
+            </ButtonLink>
+          </m.div>
         )}
       </Container>
     </SectionWrapper>

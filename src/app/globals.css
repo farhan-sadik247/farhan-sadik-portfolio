@@ -26,7 +26,7 @@
   --color-border: var(--border);
   --color-hover: var(--hover);
 
-  --font-sans: var(--font-geist-sans), var(--font-inter), sans-serif;
+  --font-sans: var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
 }
 
@@ -87,4 +87,15 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Hero photo entrance (CSS-only, runs before any JavaScript loads) */
+@keyframes hero-photo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+.animate-hero-photo {
+  animation: hero-photo-in 0.6s ease-out 0.1s both;
 }

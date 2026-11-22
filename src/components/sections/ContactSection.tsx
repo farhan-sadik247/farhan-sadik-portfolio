@@ -1,34 +1,44 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { m, AnimatePresence } from 'framer-motion';
 import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
 import { fadeInUp } from '@/utils/animations';
 import { cn } from '@/utils/cn';
-import { GitHub, LinkedIn } from '@mui/icons-material';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import type { IconType } from 'react-icons';
 import { Send, CheckCircle2, Mail, MapPin, AlertCircle, Loader2, type LucideIcon } from 'lucide-react';
 
-const contactSchema = z.object({
-  name: z.string().trim().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().trim().email({ message: "Please enter a valid email address." }),
-  subject: z.string().trim().min(5, { message: "Subject must be at least 5 characters." }),
-  message: z.string().trim().min(10, { message: "Message must be at least 10 characters." })
-});
+const FIELDS = ['name', 'email', 'subject', 'message'] as const;
+type FieldName = (typeof FIELDS)[number];
+type ContactFormValues = Record<FieldName, string>;
+type FormErrors = Partial<Record<FieldName, string>>;
 
-type ContactFormValues = z.infer<typeof contactSchema>;
+// Small hand-written validator. Keeps zod / react-hook-form (~60 KB) out of the homepage bundle.
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function validateField(field: FieldName, raw: string): string | undefined {
+  const value = raw.trim();
+  switch (field) {
+    case 'name':
+      return value.length < 2 ? 'Name must be at least 2 characters.' : undefined;
+    case 'email':
+      return EMAIL_PATTERN.test(value) ? undefined : 'Please enter a valid email address.';
+    case 'subject':
+      return value.length < 5 ? 'Subject must be at least 5 characters.' : undefined;
+    case 'message':
+      return value.length < 10 ? 'Message must be at least 10 characters.' : undefined;
+  }
+}
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 const EMAIL = 'md.farhan.sadik.578@gmail.com';
 
-const contactLinks: { icon: LucideIcon | typeof GitHub; label: string; value: string; href?: string }[] = [
+const contactLinks: { icon: LucideIcon | IconType; label: string; value: string; href?: string }[] = [
   { icon: Mail, label: 'Email', value: EMAIL, href: `mailto:${EMAIL}` },
-  { icon: LinkedIn, label: 'LinkedIn', value: 'in/farhan-sadik247', href: 'https://www.linkedin.com/in/farhan-sadik247/' },
-  { icon: GitHub, label: 'GitHub', value: 'farhan-sadik247', href: 'https://github.com/farhan-sadik247' },
+  { icon: FaLinkedin, label: 'LinkedIn', value: 'in/farhan-sadik247', href: 'https://www.linkedin.com/in/farhan-sadik247/' },
+  { icon: FaGithub, label: 'GitHub', value: 'farhan-sadik247', href: 'https://github.com/farhan-sadik247' },
   { icon: MapPin, label: 'Location', value: 'Dhaka, Bangladesh' },
 ];
 
@@ -45,7 +55,7 @@ function Field({
   error,
   children,
 }: {
-  id: keyof ContactFormValues;
+  id: FieldName;
   label: string;
   error?: string;
   children: React.ReactNode;
@@ -69,22 +79,43 @@ function Field({
 export function ContactSection() {
   const [status, setStatus] = useState<Status>('idle');
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors }
-  } = useForm<ContactFormValues>({
-    resolver: zodResolver(contactSchema)
-  });
+  const [errors, setErrors] = useState<FormErrors>({});
 
-  const a11y = (field: keyof ContactFormValues) => ({
+  const fieldProps = (field: FieldName) => ({
     id: field,
+    name: field,
     'aria-invalid': errors[field] ? true : undefined,
     'aria-describedby': errors[field] ? `${field}-error` : undefined,
   });
 
-  const onSubmit = async (data: ContactFormValues) => {
+  // Once a field has shown an error, re-check it as the user types so the message clears.
+  const handleChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const field = e.target.name as FieldName;
+    if (!FIELDS.includes(field) || !errors[field]) return;
+    setErrors((prev) => ({ ...prev, [field]: validateField(field, e.target.value) }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(
+      FIELDS.map((f) => [f, String(formData.get(f) ?? '').trim()])
+    ) as ContactFormValues;
+
+    const nextErrors: FormErrors = {};
+    for (const f of FIELDS) {
+      const error = validateField(f, data[f]);
+      if (error) nextErrors[f] = error;
+    }
+    setErrors(nextErrors);
+
+    const firstInvalid = FIELDS.find((f) => nextErrors[f]);
+    if (firstInvalid) {
+      (form.elements.namedItem(firstInvalid) as HTMLElement | null)?.focus();
+      return;
+    }
+
     setStatus('submitting');
 
     try {
@@ -105,7 +136,7 @@ export function ContactSection() {
 
       if (result.success) {
         setStatus('success');
-        reset();
+        form.reset();
       } else {
         console.error("Web3Forms Error:", result);
         setStatus('error');
@@ -122,13 +153,15 @@ export function ContactSection() {
     <SectionWrapper id="contact">
       <Container>
         <SectionHeader
+          eyebrow="06 / Contact"
+          align="center"
           title="Get In Touch"
           subtitle="Have a role, project or question in mind? I'd love to hear from you."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-6 max-w-5xl mx-auto">
           {/* Left: direct contact */}
-          <motion.aside
+          <m.aside
             variants={fadeInUp}
             className="flex flex-col bg-card p-6 md:p-8 rounded-2xl border border-border shadow-sm"
           >
@@ -177,17 +210,17 @@ export function ContactSection() {
               </span>
               Available for new opportunities
             </p>
-          </motion.aside>
+          </m.aside>
 
           {/* Right: form */}
-          <motion.div
+          <m.div
             variants={fadeInUp}
             className="bg-card p-6 md:p-8 rounded-2xl border border-border shadow-sm"
           >
             <div aria-live="polite">
               <AnimatePresence mode="wait">
                 {status === 'success' ? (
-                  <motion.div
+                  <m.div
                     key="success"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -208,58 +241,55 @@ export function ContactSection() {
                     >
                       Send another message
                     </button>
-                  </motion.div>
+                  </m.div>
                 ) : (
-                  <motion.form
+                  <m.form
                     key="form"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit}
+                    onChange={handleChange}
                     className="space-y-5"
                     aria-label="Contact form"
                     noValidate
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      <Field id="name" label="Name" error={errors.name?.message}>
+                      <Field id="name" label="Name" error={errors.name}>
                         <input
                           type="text"
                           autoComplete="name"
                           placeholder="Jane Doe"
                           className={inputClass(!!errors.name)}
-                          {...a11y('name')}
-                          {...register("name")}
+                          {...fieldProps('name')}
                         />
                       </Field>
-                      <Field id="email" label="Email" error={errors.email?.message}>
+                      <Field id="email" label="Email" error={errors.email}>
                         <input
                           type="email"
                           autoComplete="email"
                           placeholder="jane@company.com"
                           className={inputClass(!!errors.email)}
-                          {...a11y('email')}
-                          {...register("email")}
+                          {...fieldProps('email')}
                         />
                       </Field>
                     </div>
 
-                    <Field id="subject" label="Subject" error={errors.subject?.message}>
+                    <Field id="subject" label="Subject" error={errors.subject}>
                       <input
                         type="text"
                         placeholder="Software Engineer role at …"
                         className={inputClass(!!errors.subject)}
-                        {...a11y('subject')}
-                        {...register("subject")}
+                        {...fieldProps('subject')}
                       />
                     </Field>
 
-                    <Field id="message" label="Message" error={errors.message?.message}>
+                    <Field id="message" label="Message" error={errors.message}>
                       <textarea
                         rows={5}
                         placeholder="Tell me a bit about what you have in mind…"
                         className={cn(inputClass(!!errors.message), 'resize-y min-h-32')}
-                        {...a11y('message')}
-                        {...register("message")}
+                        {...fieldProps('message')}
                       />
                     </Field>
 
@@ -296,11 +326,11 @@ export function ContactSection() {
                         </>
                       )}
                     </button>
-                  </motion.form>
+                  </m.form>
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </Container>
     </SectionWrapper>

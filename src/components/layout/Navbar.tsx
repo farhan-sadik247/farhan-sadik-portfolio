@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@mui/material';
+import { ButtonLink } from '../common/ButtonLink';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { Container } from '../common/Container';
 import { navLinks } from '@/data/navigation';
@@ -67,15 +67,9 @@ export function Navbar() {
           <ThemeToggle />
           
           {!isAuthOrShortenerPage && (
-            <Button 
-              variant="contained" 
-              color="primary"
-              href="/#contact"
-              disableElevation
-              className="font-semibold"
-            >
+            <ButtonLink href="/#contact">
               Let&apos;s Talk
-            </Button>
+            </ButtonLink>
           )}
         </div>
 
@@ -99,7 +93,7 @@ export function Navbar() {
       {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && !isAuthOrShortenerPage && (
-          <motion.div
+          <m.div
             id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}
@@ -119,20 +113,16 @@ export function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <Button 
-                variant="contained" 
-                color="primary"
-                href="#contact"
-                fullWidth
-                size="large"
-                disableElevation
+              <ButtonLink
+                href="/#contact"
+                size="lg"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4"
+                className="mt-4 w-full"
               >
                 Let&apos;s Talk
-              </Button>
+              </ButtonLink>
             </nav>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

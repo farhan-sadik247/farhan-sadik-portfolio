@@ -1,43 +1,24 @@
 'use client';
 
 import * as React from 'react';
-import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
-import { MotionConfig } from 'framer-motion';
-import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { lightTheme, darkTheme } from '@/theme/muiTheme';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { LazyMotion, MotionConfig } from 'framer-motion';
 
+// The animation engine is fetched after the page loads instead of shipping in the startup bundle.
+const loadMotionFeatures = () => import('@/utils/motionFeatures').then((mod) => mod.default);
+
+/**
+ * Theme switching is handled entirely by next-themes toggling the `dark` class
+ * on <html>; all colors come from the CSS variables in globals.css.
+ */
 export function ThemeProvider({ children, ...props }: React.ComponentProps<typeof NextThemesProvider>) {
   return (
     <NextThemesProvider {...props}>
-      {/* Skip framer-motion transforms for users who prefer reduced motion */}
-      <MotionConfig reducedMotion="user">
-        <MUIThemeWrapper>
-          {children}
-        </MUIThemeWrapper>
-      </MotionConfig>
+      {/* `strict` throws if a full `motion.*` component sneaks back in and re-bloats the bundle */}
+      <LazyMotion features={loadMotionFeatures} strict>
+        {/* Skip framer-motion transforms for users who prefer reduced motion */}
+        <MotionConfig reducedMotion="user">{children}</MotionConfig>
+      </LazyMotion>
     </NextThemesProvider>
-  );
-}
-
-function MUIThemeWrapper({ children }: { children: React.ReactNode }) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
-
-  // Server and first client render both use the light theme so hydration matches;
-  // the real theme is applied after mount. The provider itself must always be
-  // rendered: swapping the wrapper element would make React remount the whole page.
-  const theme = mounted && resolvedTheme === 'dark' ? darkTheme : lightTheme;
-
-  return (
-    <MUIThemeProvider theme={theme}>
-      {mounted && <CssBaseline />}
-      {children}
-    </MUIThemeProvider>
   );
 }

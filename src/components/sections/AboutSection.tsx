@@ -1,11 +1,8 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
-import { fadeInUp, staggerContainer } from '@/utils/animations';
+import { Reveal, RevealGroup } from '../common/Reveal';
 import { Briefcase, GraduationCap, FlaskConical, MapPin } from 'lucide-react';
 
 const facts = [
@@ -39,13 +36,14 @@ export function AboutSection() {
     <SectionWrapper id="about" className="bg-surface/30">
       <Container>
         <SectionHeader
+          eyebrow="01 / About"
           title="About Me"
           subtitle="Who I am, what I build, and how I work."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14 items-start">
           {/* Left: Narrative */}
-          <motion.div variants={fadeInUp} className="space-y-5 text-text-secondary leading-relaxed text-lg">
+          <Reveal className="space-y-5 text-text-secondary leading-relaxed text-lg">
             <p>
               I&apos;m a <span className="text-text-primary font-medium">Software Engineer</span> building
               healthcare web applications and backend workflows with Angular, Python, Firebase and AWS.
@@ -57,15 +55,14 @@ export function AboutSection() {
               <span className="text-text-primary font-medium">3 weeks</span>. I use AI-assisted tools to move
               faster, and back every change with testing, debugging and code review.
             </p>
-          </motion.div>
+          </Reveal>
 
           {/* Right: Quick facts */}
-          <motion.ul
-            variants={staggerContainer}
+          <RevealGroup as="ul"
             className="bg-card rounded-2xl border border-border shadow-sm divide-y divide-border"
           >
             {facts.map(({ icon: Icon, label, value, detail }) => (
-              <motion.li key={label} variants={fadeInUp} className="flex gap-4 p-5">
+              <Reveal as="li" key={label} className="flex gap-4 p-5">
                 <div className="w-10 h-10 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Icon className="text-primary" size={20} aria-hidden="true" />
                 </div>
@@ -74,9 +71,9 @@ export function AboutSection() {
                   <p className="text-text-primary font-medium leading-snug">{value}</p>
                   {detail && <p className="text-sm text-text-muted mt-1">{detail}</p>}
                 </div>
-              </motion.li>
+              </Reveal>
             ))}
-          </motion.ul>
+          </RevealGroup>
         </div>
       </Container>
     </SectionWrapper>

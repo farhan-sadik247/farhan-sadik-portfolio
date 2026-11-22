@@ -1,11 +1,8 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Container } from '../common/Container';
 import { SectionWrapper } from '../common/SectionWrapper';
 import { SectionHeader } from '../common/SectionHeader';
-import { fadeInUp, staggerContainer } from '@/utils/animations';
+import { Reveal, RevealGroup } from '../common/Reveal';
 import { skillIcons } from '@/data/skillIcons';
 
 const skillGroups: { title: string; skills: string[] }[] = [
@@ -46,18 +43,18 @@ export function SkillsSection() {
     <SectionWrapper id="skills">
       <Container>
         <SectionHeader
+          className="max-w-5xl"
+          eyebrow="03 / Skills"
           title="Technical Skills"
           subtitle="The languages, frameworks and tools I use to build and ship production software."
         />
 
-        <motion.div
-          variants={staggerContainer}
+        <RevealGroup
           className="max-w-5xl mx-auto bg-card rounded-2xl border border-border shadow-sm divide-y divide-border"
         >
           {skillGroups.map((group) => (
-            <motion.div
+            <Reveal
               key={group.title}
-              variants={fadeInUp}
               className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-3 md:gap-6 p-5 md:p-6"
             >
               <h3 className="text-sm font-semibold uppercase tracking-wider text-primary md:pt-2">
@@ -77,17 +74,16 @@ export function SkillsSection() {
                   );
                 })}
               </ul>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </RevealGroup>
 
-        <motion.p
-          variants={fadeInUp}
+        <Reveal as="p"
           className="max-w-5xl mx-auto mt-6 text-center text-text-secondary text-[15px] leading-relaxed"
         >
           <span className="font-semibold text-text-primary">Foundations: </span>
           {foundations.join(' · ')}
-        </motion.p>
+        </Reveal>
       </Container>
     </SectionWrapper>
   );
