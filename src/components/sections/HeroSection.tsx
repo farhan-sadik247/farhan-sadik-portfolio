@@ -21,17 +21,18 @@ export function HeroSection() {
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]" />
-        <div className="absolute left-[-10%] top-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[100px] opacity-50 animate-pulse" />
-        <div className="absolute right-[-10%] bottom-[-10%] w-[40%] h-[40%] rounded-full bg-secondary/20 blur-[100px] opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute left-[-10%] top-[-10vh] w-[40vw] h-[40vh] rounded-full bg-primary/20 blur-[100px] opacity-50 animate-pulse" />
+        <div className="absolute right-[-10%] top-[70vh] w-[40vw] h-[40vh] rounded-full bg-secondary/20 blur-[100px] opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
       <Container className="relative z-10 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left Content */}
-          <motion.div 
+          {/* Left Content: rendered without an entrance animation. This text is the
+              Largest Contentful Paint element, so it must be visible before JS loads. */}
+          <motion.div
             variants={staggerContainer}
-            initial="hidden"
+            initial={false}
             animate="visible"
             className="flex flex-col gap-6"
           >
@@ -111,7 +112,7 @@ export function HeroSection() {
                 {/* Light Theme Image */}
                 <Image 
                   src="https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715354/farhan_profie_light_wgz6sd.png" 
-                  alt="Md. Farhan Sadik, software developer" 
+                  alt="Md. Farhan Sadik, software engineer" 
                   fill
                   priority
                   className="object-cover block dark:hidden"
@@ -120,7 +121,7 @@ export function HeroSection() {
                 {/* Dark Theme Image */}
                 <Image 
                   src="https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715017/fathan_profile_inauvp.png" 
-                  alt="Md. Farhan Sadik, software developer" 
+                  alt="Md. Farhan Sadik, software engineer" 
                   fill
                   priority
                   className="object-cover hidden dark:block"

@@ -77,8 +77,7 @@ export function Footer() {
                   key={social.name}
                   component="a"
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(social.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                   aria-label={social.name}
                   size="small"
                   sx={{ color: 'var(--text-muted)', '&:hover': { color: 'var(--primary)', bgcolor: 'var(--hover)' } }}

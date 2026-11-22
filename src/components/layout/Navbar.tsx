@@ -39,11 +39,11 @@ export function Navbar() {
     >
       <Container className="flex items-center justify-between">
         <Link href="/" className="group flex items-center gap-3">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-slate-400 to-slate-800 shadow-lg transition-transform group-hover:scale-110">
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-linear-to-br from-slate-400 to-slate-800 shadow-lg transition-transform group-hover:scale-110">
             <span className="font-bold text-2xl text-white tracking-tighter">F</span>
             <span className="font-bold text-2xl text-slate-300 tracking-tighter">S</span>
           </div>
-          <div className="h-8 w-[2px] bg-slate-600/50 rounded-full mx-1"></div>
+          <div className="h-8 w-0.5 bg-slate-600/50 rounded-full mx-1"></div>
           <span className="font-bold text-2xl tracking-tight text-text-primary">Portfolio</span>
         </Link>
 
@@ -86,7 +86,9 @@ export function Navbar() {
             <button 
               className="p-2 rounded-md hover:bg-hover transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle mobile menu"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -98,6 +100,7 @@ export function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && !isAuthOrShortenerPage && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
