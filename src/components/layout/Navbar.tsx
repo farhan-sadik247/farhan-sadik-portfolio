@@ -26,9 +26,25 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock page scroll and allow Escape to close while the drawer is open
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [mobileMenuOpen]);
+
   const isAuthOrShortenerPage = pathname.startsWith('/login') || pathname.startsWith('/signup') || pathname.startsWith('/shortener');
 
   return (
+    <>
     <header
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
@@ -90,41 +106,77 @@ export function Navbar() {
         </div>
       </Container>
 
-      {/* Mobile Drawer */}
+    </header>
+
+      {/* Mobile Drawer (rendered outside <header> so its backdrop-blur doesn't trap position: fixed) */}
       <AnimatePresence>
         {mobileMenuOpen && !isAuthOrShortenerPage && (
-          <m.div
-            id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="lg:hidden absolute top-full left-0 w-full bg-surface border-b border-border overflow-hidden"
-          >
-            <nav className="flex flex-col p-6 gap-6 items-center">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
+          <>
+            <m.div
+              key="mobile-menu-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="lg:hidden fixed inset-0 z-60 bg-black/30 backdrop-blur-sm"
+              aria-hidden="true"
+            />
+            <m.aside
+              key="mobile-menu"
+              id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3, ease: 'easeOut' }}
+              className="lg:hidden fixed inset-y-0 right-0 z-70 flex w-[80%] max-w-sm flex-col border-l border-border/50 bg-surface/60 backdrop-blur-xl shadow-2xl"
+            >
+              <div className="flex items-center justify-between px-5 py-4 border-b border-border/50">
+                <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">Menu</span>
+                <button
+                  className="p-2 rounded-md hover:bg-hover transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium hover:text-primary transition-colors"
+                  aria-label="Close menu"
                 >
-                  {link.name}
-                </Link>
-              ))}
-              <ButtonLink
-                href="/#contact"
-                size="lg"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 w-full"
-              >
-                Let&apos;s Talk
-              </ButtonLink>
-            </nav>
-          </m.div>
+                  <X size={22} />
+                </button>
+              </div>
+              <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-3 py-4">
+                {navLinks.map((link, i) => (
+                  <m.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 + i * 0.04, duration: 0.25 }}
+                  >
+                    <Link
+                      href={link.href}
+                      {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block rounded-lg px-4 py-3 text-base font-medium text-text-primary hover:bg-hover hover:text-primary transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  </m.div>
+                ))}
+              </nav>
+              <div className="p-5 border-t border-border/50">
+                <ButtonLink
+                  href="/#contact"
+                  size="lg"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full"
+                >
+                  Let&apos;s Talk
+                </ButtonLink>
+              </div>
+            </m.aside>
+          </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

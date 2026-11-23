@@ -75,11 +75,23 @@ export function HeroSection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-2">
-              <ButtonLink href="#projects" size="lg" endIcon={<ArrowRight size={18} />}>
+            <div className="flex gap-3 sm:gap-4 pt-2">
+              <ButtonLink
+                href="#projects"
+                size="lg"
+                className="flex-1 sm:flex-none px-3 sm:px-6 text-sm sm:text-base"
+                endIcon={<ArrowRight size={18} />}
+              >
                 View Projects
               </ButtonLink>
-              <ButtonLink href={RESUME_URL} download variant="outlined" size="lg" startIcon={<Download size={18} />}>
+              <ButtonLink
+                href={RESUME_URL}
+                download
+                variant="outlined"
+                size="lg"
+                className="flex-1 sm:flex-none px-3 sm:px-6 text-sm sm:text-base"
+                startIcon={<Download size={18} />}
+              >
                 Download CV
               </ButtonLink>
             </div>
