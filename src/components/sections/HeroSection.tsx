@@ -4,6 +4,7 @@ import { ButtonLink } from '../common/ButtonLink';
 import { Download, ArrowRight, ArrowUpRight, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Image from 'next/image';
+import { HeroBackground } from './HeroBackground';
 import { RESUME_URL } from '@/data/navigation';
 
 const socials = [
@@ -35,14 +36,7 @@ function HeroLink({ href, children }: { href: string; children: React.ReactNode 
 export function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex flex-col pt-28 pb-12 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]" />
-        {/* Soft glows drawn with radial gradients: same look as a large blur() filter,
-            but far cheaper to paint on slow devices. */}
-        <div className="absolute left-[-20%] top-[-30vh] w-[60vw] h-[80vh] bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--primary)_14%,transparent),transparent)] animate-pulse" />
-        <div className="absolute right-[-20%] top-[50vh] w-[60vw] h-[80vh] bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--secondary)_14%,transparent),transparent)] animate-pulse" style={{ animationDelay: '2s' }} />
-      </div>
+      <HeroBackground />
 
       <Container className="relative z-10 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
