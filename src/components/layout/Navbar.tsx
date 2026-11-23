@@ -12,6 +12,15 @@ import { navLinks } from '@/data/navigation';
 import { cn } from '@/utils/cn';
 import { usePathname } from 'next/navigation';
 
+/** Files like the CV PDF use a plain <a>: next/link would try to prefetch them as pages (404 in the console). */
+function NavLink({ external, ...props }: React.ComponentProps<typeof Link> & { external?: boolean }) {
+  if (external) {
+    const { href, ...rest } = props;
+    return <a href={String(href)} target="_blank" rel="noopener noreferrer" {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)} />;
+  }
+  return <Link {...props} />;
+}
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -69,14 +78,14 @@ export function Navbar() {
         {!isAuthOrShortenerPage && (
           <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.name}
                 href={link.href}
-                {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                external={link.external}
                 className="text-sm font-medium text-text-primary/80 hover:text-primary transition-colors"
               >
                 {link.name}
-              </Link>
+              </NavLink>
             ))}
           </nav>
         )}
@@ -154,14 +163,14 @@ export function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.04, duration: 0.25 }}
                   >
-                    <Link
+                    <NavLink
                       href={link.href}
-                      {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                      external={link.external}
                       onClick={() => setMobileMenuOpen(false)}
                       className="block rounded-lg px-4 py-3 text-base font-medium text-text-primary hover:bg-hover hover:text-primary transition-colors"
                     >
                       {link.name}
-                    </Link>
+                    </NavLink>
                   </m.div>
                 ))}
               </nav>
