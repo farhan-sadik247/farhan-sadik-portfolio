@@ -6,6 +6,7 @@ import { m, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { ButtonLink } from '../common/ButtonLink';
 import { ThemeToggle } from '../common/ThemeToggle';
+import { ScrollProgress } from '../common/ScrollFx';
 import { Container } from '../common/Container';
 import { navLinks } from '@/data/navigation';
 import { cn } from '@/utils/cn';
@@ -45,6 +46,7 @@ export function Navbar() {
 
   return (
     <>
+    <ScrollProgress />
     <header
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
