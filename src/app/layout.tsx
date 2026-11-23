@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -13,17 +13,14 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  // Only used for small section labels below the fold, so don't compete with Geist at startup.
+  preload: false,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://farhansadik.me"),
   title: {
-    default: "Md. Farhan Sadik | Software Developer",
+    default: "Md. Farhan Sadik | Software Engineer",
     template: "%s | Md. Farhan Sadik"
   },
   description: "Md. Farhan Sadik is a software developer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.",
@@ -31,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://farhansadik.me/",
-    title: "Md. Farhan Sadik | Software Developer",
+    title: "Md. Farhan Sadik | Software Engineer",
     description: "Md. Farhan Sadik is a software developer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.",
     images: [
       {
@@ -42,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Md. Farhan Sadik | Software Developer",
+    title: "Md. Farhan Sadik | Software Engineer",
     description: "Md. Farhan Sadik is a software developer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.",
     images: ["https://res.cloudinary.com/dupf4kmfg/image/upload/v1784715354/farhan_profie_light_wgz6sd.png"]
   }
@@ -57,7 +54,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} h-full antialiased scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-background text-text-primary transition-colors duration-300">
         <script
@@ -69,7 +66,7 @@ export default function RootLayout({
               "name": "Md. Farhan Sadik",
               "alternateName": "Farhan Sadik",
               "url": "https://farhansadik.me/",
-              "jobTitle": "Software Developer",
+              "jobTitle": "Software Engineer",
               "worksFor": {
                 "@type": "Organization",
                 "name": "Neeramoy Digital Services Ltd."
@@ -124,8 +121,14 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-on-primary focus:font-semibold"
+          >
+            Skip to content
+          </a>
           <Navbar />
-          <main className="flex-1">
+          <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
             {children}
           </main>
           <Footer />

@@ -4,7 +4,6 @@ import { SkillsSection } from "@/components/sections/SkillsSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { AchievementsSection } from "@/components/sections/AchievementsSection";
-import { ResumeSection } from "@/components/sections/ResumeSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 import { Metadata } from "next";
@@ -22,9 +21,8 @@ export default function Home() {
       <AboutSection />
       <ExperienceSection />
       <SkillsSection />
-      <ProjectsSection limit={4} />
+      <ProjectsSection limit={4} eyebrow="04 / Projects" />
       <AchievementsSection />
-      <ResumeSection />
       <ContactSection />
     </div>
   );
