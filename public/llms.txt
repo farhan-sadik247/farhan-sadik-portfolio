@@ -1,0 +1,22 @@
+# Md. Farhan Sadik
+
+> Software Engineer from Bangladesh specializing in full-stack web development, modern web applications, AI-powered applications and cloud technologies.
+
+Farhan builds healthcare web applications at Neeramoy Digital Services, working across the stack with Angular, React, Next.js, Python, Firebase and AWS. He graduated in Computer Science & Engineering from BRAC University in 2025.
+
+## Pages
+
+- [Home](https://farhansadik.me/): About, experience, skills, projects, achievements and contact
+- [Projects](https://farhansadik.me/projects): Full list of projects
+- [Resume (PDF)](https://farhansadik.me/Farhan_Sadik_CV.pdf): Curriculum vitae
+
+## Selected work
+
+- [AI shopping assistant](https://shoe-bay247.vercel.app/)
+- [Python course platform that grades code](https://codewithfarhan.vercel.app/)
+- [Model that turns speech into 3D sign language (arXiv)](https://doi.org/10.48550/arXiv.2507.06530)
+
+## Contact
+
+- [GitHub](https://github.com/farhan-sadik247)
+- [LinkedIn](https://www.linkedin.com/in/farhan-sadik247/)
