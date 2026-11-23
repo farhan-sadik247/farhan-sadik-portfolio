@@ -5,6 +5,7 @@ import { Download, ArrowRight, ArrowUpRight, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import Image from 'next/image';
 import { HeroBackground } from './HeroBackground';
+import { ScrollParallax } from '../common/ScrollFx';
 import { RESUME_URL } from '@/data/navigation';
 
 const socials = [
@@ -43,6 +44,7 @@ export function HeroSection() {
           
           {/* Left Content: no entrance animation. This text is the Largest Contentful
               Paint element, so it must be visible as soon as the HTML arrives. */}
+          <ScrollParallax distance={-90} fadeTo={0.15}>
           <div className="flex flex-col gap-6">
             <div>
               <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary font-medium text-sm mb-4 border border-primary/20">
@@ -105,8 +107,10 @@ export function HeroSection() {
               ))}
             </ul>
           </div>
+          </ScrollParallax>
 
           {/* Right Content: CSS-only entrance so the photo never waits on JavaScript */}
+          <ScrollParallax distance={60} fadeTo={0.5}>
           <div className="flex justify-center relative mt-8 lg:mt-0 animate-hero-photo">
             <div className="relative w-full max-w-75 sm:max-w-87.5 lg:w-100 h-87.5 sm:h-100 lg:h-125 rounded-2xl overflow-hidden border border-border/50 bg-surface shadow-2xl p-4">
               <div className="w-full h-full rounded-xl bg-card flex items-center justify-center border border-border/30 overflow-hidden relative">
@@ -131,6 +135,7 @@ export function HeroSection() {
               </div>
             </div>
           </div>
+          </ScrollParallax>
 
         </div>
       </Container>
